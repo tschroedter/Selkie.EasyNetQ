@@ -7,7 +7,7 @@ Please, check the provided examples for more details.
 # Examples:
 
 SelkieMessageConsumer
-
+```CS
     public class MessageAConsumer : SelkieMessageConsumer <MessageA>
     {
         public override void Handle(MessageA message)
@@ -17,9 +17,10 @@ SelkieMessageConsumer
                                      .Name);
         }
     }
+```
 
 SelkieMessageConsumerAsync
-
+```CS
     public class MessageBConsumerAsync : SelkieMessageConsumerAsync <MessageB>
     {
         public override void Handle(MessageB message)
@@ -29,6 +30,7 @@ SelkieMessageConsumerAsync
                                      .Name);
         }
     }
+```
 
 BusExtensions
 
@@ -43,7 +45,7 @@ The project started as a little ant colony optimization application. Over time t
 
 * Selkie ACO
 * Selkie Common
-* Selkie EasyNetQ
+* [Selkie EasyNetQ](https://github.com/tschroedter/Selkie.EasyNetQ)
 * Selkie Geometry
 * Selkie NUnit Extensions
 * Selkie Racetrack
@@ -53,7 +55,7 @@ The project started as a little ant colony optimization application. Over time t
 * Selkie Services Monitor
 * Selkie Services Racetracks
 * Selkie Web
-* Selkie Windsor
+* [Selkie Windsor](https://github.com/tschroedter/Selkie.Windsor)
 * Selkie WPF
 * Selkie XUnit Extensions
  
