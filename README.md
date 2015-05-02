@@ -1,4 +1,4 @@
-# Selkie.Windsor
+# Selkie.EasyNetQ
 
 The Selkie.EasyNetQ project creates a NuGet package. The package is an extension to EasyNetQ and provides Some small extensions and installers for EasyNetQ. The package contains an extension to subscribe to messages async, a logger, classes to support simple usage of the IConsume interface.  
 
