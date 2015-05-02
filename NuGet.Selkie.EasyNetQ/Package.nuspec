@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+
+<package>
+  <metadata>
+    <id>Selkie.EasyNetQ</id>
+    <version>1.0.0.0</version>
+    <title>Selkie.EasyNetQ</title>
+    <authors>Thomas Schroedter</authors>
+    <owners>Thomas Schroedter</owners>
+    <description>
+      Some small extensions and installers for EasyNetQ.
+    </description>
+    <releaseNotes>
+    </releaseNotes>
+    <summary>
+      Some small extensions and installers for EasyNetQ. The package contains a extension to subscribe to messages async and a logger.
+    </summary>
+    <language>en-US</language>
+    <projectUrl>https://nuget.org/packages/Selkie.EasyNetQ</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <copyright>Copyright © Thomas Schroedter 2015</copyright>
+    <dependencies>
+      <group targetFramework="net40">
+        <dependency id="log4net" version="1.2.10" />
+      </group>
+      <group targetFramework="net45">
+      </group>
+    </dependencies>
+    <references></references>
+    <tags>Selkie</tags>
+  </metadata>
+  <files>
+    <file src="lib\" target="lib" />
+    <file src="tools\" target="tools" />
+    <file src="content\" target="content" />
+  </files>
+</package>

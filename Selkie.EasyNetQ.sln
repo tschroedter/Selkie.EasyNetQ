@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selkie.EasyNetQ", "Selkie.EasyNetQ\Selkie.EasyNetQ.csproj", "{70A4F775-B9D9-449D-AD85-7F8D92643D89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NuGet.Selkie.EasyNetQ", "NuGet.Selkie.EasyNetQ\NuGet.Selkie.EasyNetQ.csproj", "{BB9CA522-5E71-48F5-9FDB-153A3E83FD71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selkie.EasyNetQ.Tests", "Selkie.EasyNetQ.Tests\Selkie.EasyNetQ.Tests.csproj", "{A22F05DB-99A7-474C-B226-DB45B6E22102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Selkie.EasyNetQ.Examples", "Selkie.EasyNetQ.Examples\Selkie.EasyNetQ.Examples.csproj", "{26FFBFB5-0674-4053-B6CD-C2ADAA6F214C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70A4F775-B9D9-449D-AD85-7F8D92643D89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70A4F775-B9D9-449D-AD85-7F8D92643D89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70A4F775-B9D9-449D-AD85-7F8D92643D89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70A4F775-B9D9-449D-AD85-7F8D92643D89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB9CA522-5E71-48F5-9FDB-153A3E83FD71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB9CA522-5E71-48F5-9FDB-153A3E83FD71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB9CA522-5E71-48F5-9FDB-153A3E83FD71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB9CA522-5E71-48F5-9FDB-153A3E83FD71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A22F05DB-99A7-474C-B226-DB45B6E22102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A22F05DB-99A7-474C-B226-DB45B6E22102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A22F05DB-99A7-474C-B226-DB45B6E22102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A22F05DB-99A7-474C-B226-DB45B6E22102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26FFBFB5-0674-4053-B6CD-C2ADAA6F214C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26FFBFB5-0674-4053-B6CD-C2ADAA6F214C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26FFBFB5-0674-4053-B6CD-C2ADAA6F214C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26FFBFB5-0674-4053-B6CD-C2ADAA6F214C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
