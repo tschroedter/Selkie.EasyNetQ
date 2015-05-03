@@ -19,7 +19,7 @@
     <projectUrl>https://nuget.org/packages/Selkie.EasyNetQ</projectUrl>
     <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <licenseUrl>https://github.com/tschroedter/Selkie.EasyNetQ/blob/master/LICENSE</licenseUrl>
     <copyright>Copyright © Thomas Schroedter 2015</copyright>
     <dependencies>
       <group targetFramework="net40">
