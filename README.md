@@ -63,7 +63,7 @@ The project started as a little ant colony optimization application. Over time t
 * Selkie NUnit Extensions
 * Selkie Racetrack
 * Selkie Services ACO
-* Selkie Service Common
+* Selkie Services Common
 * Selkie Services Lines
 * Selkie Services Monitor
 * Selkie Services Racetracks
