@@ -33,8 +33,21 @@ SelkieMessageConsumerAsync
 ```
 
 BusExtensions
+```CS
+    public void SubscribeHandlerCallsBusTest()
+    {
+        IBus bus = Substitute.For <IBus>();
+        ILogger logger = Substitute.For <ILogger>();
 
-    todo
+        bus.SubscribeHandlerAsync <TestMessage>(logger,
+                                                "TestId",
+                                                TestHandler);
+
+        bus.Received()
+           .SubscribeAsync("TestId",
+                           Arg.Any <Func <TestMessage, Task>>());
+    }
+```
 
 # Selkie
 Selkie.EasyNetQ is part of the Selkie project which is based on Castle Windsor and EasyNetQ. The main goal of the Selkie project is to calculate and displays the shortest path for a boat travelling along survey lines from point A to B. The algorithm takes into account the minimum required turn circle of a vessel required to navigate from one line to another.
