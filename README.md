@@ -60,7 +60,7 @@ The project started as a little ant colony optimization application. Over time t
 * Selkie Common
 * [Selkie EasyNetQ](https://github.com/tschroedter/Selkie.EasyNetQ)
 * Selkie Geometry
-* Selkie NUnit Extensions
+* [Selkie NUnit Extensions](https://github.com/tschroedter/Selkie.NUnit.Extensions)
 * Selkie Racetrack
 * Selkie Services ACO
 * Selkie Services Common
