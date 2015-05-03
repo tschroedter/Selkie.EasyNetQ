@@ -1,6 +1,6 @@
 # Selkie.EasyNetQ
 
-The Selkie.EasyNetQ project creates a NuGet package. The package is an extension to EasyNetQ and provides Some small extensions and installers for EasyNetQ. The package contains an extension to subscribe to messages async, a logger, classes to support simple usage of the IConsume interface.  
+The Selkie.EasyNetQ project creates a NuGet package. The package is an extension to EasyNetQ and provides some small extensions and installers for EasyNetQ. The package contains an extension to subscribe to messages async, a logger, classes to support simple usage of the IConsume interface.  
 
 Please, check the provided examples for more details.
 
@@ -70,6 +70,6 @@ The project started as a little ant colony optimization application. Over time t
 * Selkie Web
 * [Selkie Windsor](https://github.com/tschroedter/Selkie.Windsor)
 * Selkie WPF
-* Selkie XUnit Extensions
+* [Selkie XUnit Extensions](https://github.com/tschroedter/Selkie.XUnit.Extensions)
  
 
