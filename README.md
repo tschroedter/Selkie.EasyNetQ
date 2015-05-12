@@ -54,7 +54,7 @@ Selkie.EasyNetQ is part of the Selkie project which is based on Castle Windsor a
 
 The project started as a little ant colony optimization application. Over time the application grew and was split up into different services which communicate via RabbitMQ. The whole project is used to try out TDD, BDD, DRY and SOLID.
 
-# Selkie projects:
+### Selkie Projects
 
 * [Selkie](https://github.com/tschroedter/Selkie)
 * Selkie ACO
