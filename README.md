@@ -65,7 +65,7 @@ The project started as a little ant colony optimization application. Over time t
 * Selkie Racetrack
 * Selkie Services ACO
 * [Selkie Services Common](https://github.com/tschroedter/Selkie.Services.Common)
-* Selkie Services Lines
+* [Selkie Services Lines](https://github.com/tschroedter/Selkie.Services.Lines)
 * [Selkie Services Lines Common](https://github.com/tschroedter/Selkie.Services.Lines.Common)
 * Selkie Services Monitor
 * Selkie Services Racetracks
