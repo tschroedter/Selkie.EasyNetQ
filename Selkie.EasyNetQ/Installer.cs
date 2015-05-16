@@ -16,11 +16,11 @@ namespace Selkie.EasyNetQ
             base.InstallComponents(container,
                                    store);
 
-            BusInstaller busInstaller = new BusInstaller();
+            var busInstaller = new BusInstaller();
             busInstaller.Install(container,
                                  store);
 
-            WindsorMessageDispatcherInstaller dispatcherBuilder = new WindsorMessageDispatcherInstaller();
+            var dispatcherBuilder = new WindsorMessageDispatcherInstaller();
             dispatcherBuilder.Install(container,
                                       store);
         }

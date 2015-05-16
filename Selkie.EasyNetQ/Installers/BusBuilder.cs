@@ -9,10 +9,8 @@ namespace Selkie.EasyNetQ.Installers
     //ncrunch: no coverage start
     public class BusBuilder
     {
-        public const string ConnectionString = "host=localhost;" +
-                                               "virtualHost=selkie;" +
-                                               "username=selkie;" +
-                                               "password=selkie";
+        public const string ConnectionString =
+            "host=localhost;" + "virtualHost=selkie;" + "username=selkie;" + "password=selkie";
 
         [NotNull]
         public static IBus CreateMessageBus([NotNull] IWindsorContainer container)

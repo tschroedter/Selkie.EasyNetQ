@@ -10,10 +10,10 @@ namespace Selkie.EasyNetQ.Extensions
     public static class BusExtensions
     {
         // ReSharper disable TooManyArguments
-        public static void SubscribeHandlerAsync<T>([NotNull] this IBus bus,
-                                                    [NotNull] ILogger logger,
-                                                    [NotNull] string subscriptionId,
-                                                    [NotNull] Action <T> handler) where T : class
+        public static void SubscribeHandlerAsync <T>([NotNull] this IBus bus,
+                                                     [NotNull] ILogger logger,
+                                                     [NotNull] string subscriptionId,
+                                                     [NotNull] Action <T> handler) where T : class
         {
             Func <T, Task> func = message => CreateTask(logger,
                                                         handler,
@@ -25,9 +25,9 @@ namespace Selkie.EasyNetQ.Extensions
 
         // ReSharper restore TooManyArguments
         [NotNull]
-        internal static Task CreateTask<T>([NotNull] ILogger logger,
-                                           [NotNull] Action <T> handler,
-                                           [NotNull] T message) where T : class
+        internal static Task CreateTask <T>([NotNull] ILogger logger,
+                                            [NotNull] Action <T> handler,
+                                            [NotNull] T message) where T : class
         {
             logger.Debug("Received '{0}' and creating task for it...".Inject(message.GetType()));
 

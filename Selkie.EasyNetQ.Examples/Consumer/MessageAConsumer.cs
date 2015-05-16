@@ -11,8 +11,7 @@ namespace Selkie.EasyNetQ.Examples.Consumer
         public override void Handle(MessageA message)
         {
             Console.WriteLine("==> Consumed message {0}...",
-                              message.GetType()
-                                     .Name);
+                              message.GetType().Name);
         }
     }
 }

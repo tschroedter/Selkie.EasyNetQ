@@ -6,7 +6,7 @@ namespace Selkie.EasyNetQ
 {
     [ExcludeFromCodeCoverage]
     //ncrunch: no coverage start
-    public abstract class SelkieMessageConsumer<T> : IConsume <T>
+    public abstract class SelkieMessageConsumer <T> : IConsume <T>
         where T : class
     {
         public void Consume([NotNull] T message)

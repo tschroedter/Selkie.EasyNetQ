@@ -7,7 +7,7 @@ namespace Selkie.EasyNetQ
 {
     [ExcludeFromCodeCoverage]
     //ncrunch: no coverage start
-    public abstract class SelkieMessageConsumerAsync<T> : IConsumeAsync <T>
+    public abstract class SelkieMessageConsumerAsync <T> : IConsumeAsync <T>
         where T : class
     {
         public Task Consume([NotNull] T message)

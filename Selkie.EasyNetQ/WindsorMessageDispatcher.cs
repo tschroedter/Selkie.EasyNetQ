@@ -21,11 +21,10 @@ namespace Selkie.EasyNetQ
             m_Logger = container.Resolve <ILogger>();
         }
 
-        public void Dispatch<TMessage, TConsumer>([NotNull] TMessage message)
-            where TMessage : class
+        public void Dispatch <TMessage, TConsumer>([NotNull] TMessage message) where TMessage : class
             where TConsumer : IConsume <TMessage>
         {
-            TConsumer consumer = m_Container.Resolve <TConsumer>();
+            var consumer = m_Container.Resolve <TConsumer>();
             try
             {
                 consumer.Consume(message);
@@ -43,13 +42,11 @@ namespace Selkie.EasyNetQ
             }
         }
 
-        public Task DispatchAsync<TMessage, TConsumer>([NotNull] TMessage message)
-            where TMessage : class
+        public Task DispatchAsync <TMessage, TConsumer>([NotNull] TMessage message) where TMessage : class
             where TConsumer : IConsumeAsync <TMessage>
         {
-            TConsumer consumer = m_Container.Resolve <TConsumer>();
-            return consumer.Consume(message)
-                           .ContinueWith(t => m_Container.Release(consumer));
+            var consumer = m_Container.Resolve <TConsumer>();
+            return consumer.Consume(message).ContinueWith(t => m_Container.Release(consumer));
         }
     }
 }

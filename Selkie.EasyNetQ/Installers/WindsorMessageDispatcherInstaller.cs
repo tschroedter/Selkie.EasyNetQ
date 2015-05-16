@@ -15,9 +15,12 @@ namespace Selkie.EasyNetQ.Installers
                             [NotNull] IConfigurationStore store)
         {
             container.Register(
-                Component.For <AutoSubscriber>()
-                         .UsingFactoryMethod(() => WindsorMessageDispatcherBuilder.CreateMessageDispatcher(container))
-                         .LifestyleSingleton());
+                               Component.For <AutoSubscriber>()
+                                        .UsingFactoryMethod(
+                                                            () =>
+                                                            WindsorMessageDispatcherBuilder.CreateMessageDispatcher(
+                                                                                                                    container))
+                                        .LifestyleSingleton());
         }
     }
 }

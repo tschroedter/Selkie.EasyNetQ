@@ -24,20 +24,19 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         [Fact]
         public void CreateTaskCallsLoggerTest()
         {
-            ILogger logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ILogger>();
 
             BusExtensions.CreateTask(logger,
                                      TestHandler,
                                      new TestMessage());
 
-            logger.Received()
-                  .Debug(Arg.Is <string>(x => x.StartsWith("Received ")));
+            logger.Received().Debug(Arg.Is <string>(x => x.StartsWith("Received ")));
         }
 
         [Fact]
         public void CreateTaskReturnsTaskTest()
         {
-            ILogger logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ILogger>();
 
             Task actual = BusExtensions.CreateTask(logger,
                                                    TestHandler,
@@ -49,7 +48,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         [Fact]
         public void CreatedTaskCallsHandlerTest()
         {
-            ILogger logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ILogger>();
 
             Task actual = BusExtensions.CreateTask(logger,
                                                    TestHandler,
@@ -63,7 +62,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         [Fact]
         public void CreatedTaskCallsLoggerTest()
         {
-            ILogger logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ILogger>();
 
             Task actual = BusExtensions.CreateTask(logger,
                                                    TestHandler,
@@ -71,23 +70,21 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
 
             actual.Wait();
 
-            logger.Received()
-                  .Debug(Arg.Is <string>(x => x.StartsWith("Handling ")));
+            logger.Received().Debug(Arg.Is <string>(x => x.StartsWith("Handling ")));
         }
 
         [Fact]
         public void SubscribeHandlerCallsBusTest()
         {
-            IBus bus = Substitute.For <IBus>();
-            ILogger logger = Substitute.For <ILogger>();
+            var bus = Substitute.For <IBus>();
+            var logger = Substitute.For <ILogger>();
 
             bus.SubscribeHandlerAsync <TestMessage>(logger,
                                                     "TestId",
                                                     TestHandler);
 
-            bus.Received()
-               .SubscribeAsync("TestId",
-                               Arg.Any <Func <TestMessage, Task>>());
+            bus.Received().SubscribeAsync("TestId",
+                                          Arg.Any <Func <TestMessage, Task>>());
         }
 
         [UsedImplicitly]

@@ -13,17 +13,16 @@ namespace Selkie.EasyNetQ.Installers
         [NotNull]
         public static AutoSubscriber CreateMessageDispatcher([NotNull] IWindsorContainer container)
         {
-            IBus bus = container.Resolve <IBus>();
+            var bus = container.Resolve <IBus>();
 
-            AutoSubscriber autoSubscriber = new AutoSubscriber(bus,
-                                                               "Selkie_AutoSubscriber_")
-                                            {
-                                                AutoSubscriberMessageDispatcher =
-                                                    new WindsorMessageDispatcher(container),
-                                                GenerateSubscriptionId =
-                                                    subscriptionInfo =>
-                                                    "Selkie_AutoSubscriber_" + subscriptionInfo.ConcreteType.Name
-                                            };
+            var autoSubscriber = new AutoSubscriber(bus,
+                                                    "Selkie_AutoSubscriber_")
+                                 {
+                                     AutoSubscriberMessageDispatcher = new WindsorMessageDispatcher(container),
+                                     GenerateSubscriptionId =
+                                         subscriptionInfo =>
+                                         "Selkie_AutoSubscriber_" + subscriptionInfo.ConcreteType.Name
+                                 };
 
             return autoSubscriber;
         }

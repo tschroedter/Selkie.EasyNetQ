@@ -13,17 +13,17 @@ namespace Selkie.EasyNetQ.Examples
     {
         public static void Main()
         {
-            WindsorContainer container = new WindsorContainer();
-            Installer installer = new Installer();
+            var container = new WindsorContainer();
+            var installer = new Installer();
             container.Install(installer);
 
             Assembly assembly = typeof ( Installer ).Assembly;
 
-            RegisterMessageConsumers register = new RegisterMessageConsumers();
+            var register = new RegisterMessageConsumers();
             register.Register(container,
                               assembly);
 
-            IBus bus = container.Resolve <IBus>();
+            var bus = container.Resolve <IBus>();
             bus.Publish(new MessageA());
             bus.Publish(new MessageB());
 

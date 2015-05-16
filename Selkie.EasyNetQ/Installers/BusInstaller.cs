@@ -15,7 +15,8 @@ namespace Selkie.EasyNetQ.Installers
                             [NotNull] IConfigurationStore store)
         {
             // ReSharper disable MaximumChainedReferences
-            container.Register(Component.For <IBus>()
+            container.Register(
+                               Component.For <IBus>()
                                         .UsingFactoryMethod(() => BusBuilder.CreateMessageBus(container))
                                         .LifestyleSingleton());
             // ReSharper restore MaximumChainedReferences

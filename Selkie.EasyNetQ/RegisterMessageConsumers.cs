@@ -22,12 +22,13 @@ namespace Selkie.EasyNetQ
             m_Logger = container.Resolve <ILogger>();
 
             container.Install()
-                     .Register(Classes.FromAssembly(assembly)
+                     .Register(
+                               Classes.FromAssembly(assembly)
                                       .Where(IsMessageConsumerLogged)
                                       .WithServiceSelf()
                                       .LifestyleTransient());
 
-            AutoSubscriber autoSubscriber = container.Resolve <AutoSubscriber>();
+            var autoSubscriber = container.Resolve <AutoSubscriber>();
             autoSubscriber.Subscribe(assembly);
             autoSubscriber.SubscribeAsync(assembly);
 
@@ -38,8 +39,7 @@ namespace Selkie.EasyNetQ
         {
             string name = x.Name;
 
-            return name.EndsWith("ConsumerAsync") ||
-                   name.EndsWith("Consumer");
+            return name.EndsWith("ConsumerAsync") || name.EndsWith("Consumer");
         }
 
         private bool IsMessageConsumerLogged(Type x)

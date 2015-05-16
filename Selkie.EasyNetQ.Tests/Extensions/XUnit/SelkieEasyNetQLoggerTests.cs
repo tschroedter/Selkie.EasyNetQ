@@ -13,51 +13,47 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         [Fact]
         public void DebugWriteCallsDebugTest()
         {
-            ILogger logger = Substitute.For <ILogger>();
-            SelkieEasyNetQLogger selkieLogger = new SelkieEasyNetQLogger(logger);
+            var logger = Substitute.For <ILogger>();
+            var selkieLogger = new SelkieEasyNetQLogger(logger);
 
             selkieLogger.DebugWrite("Text");
 
-            logger.Received()
-                  .Debug("Text");
+            logger.Received().Debug("Text");
         }
 
         [Fact]
         public void InfoWriteCallsDebugTest()
         {
-            ILogger logger = Substitute.For <ILogger>();
-            SelkieEasyNetQLogger selkieLogger = new SelkieEasyNetQLogger(logger);
+            var logger = Substitute.For <ILogger>();
+            var selkieLogger = new SelkieEasyNetQLogger(logger);
 
             selkieLogger.InfoWrite("Text");
 
-            logger.Received()
-                  .Info("Text");
+            logger.Received().Info("Text");
         }
 
         [Fact]
         public void ErrorWriteCallsDebugTest()
         {
-            ILogger logger = Substitute.For <ILogger>();
-            SelkieEasyNetQLogger selkieLogger = new SelkieEasyNetQLogger(logger);
+            var logger = Substitute.For <ILogger>();
+            var selkieLogger = new SelkieEasyNetQLogger(logger);
 
             selkieLogger.ErrorWrite("Text");
 
-            logger.Received()
-                  .Error("Text");
+            logger.Received().Error("Text");
         }
 
         [Fact]
         public void ErrorWriteExceptionCallsDebugTest()
         {
-            ILogger logger = Substitute.For <ILogger>();
-            SelkieEasyNetQLogger selkieLogger = new SelkieEasyNetQLogger(logger);
-            ArgumentException exception = new ArgumentException("Text");
+            var logger = Substitute.For <ILogger>();
+            var selkieLogger = new SelkieEasyNetQLogger(logger);
+            var exception = new ArgumentException("Text");
 
             selkieLogger.ErrorWrite(exception);
 
-            logger.Received()
-                  .Error("An exception has occurred",
-                         exception);
+            logger.Received().Error("An exception has occurred",
+                                    exception);
         }
     }
 }
