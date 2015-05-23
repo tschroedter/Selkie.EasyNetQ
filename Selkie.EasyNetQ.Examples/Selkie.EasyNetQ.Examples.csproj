@@ -64,8 +64,8 @@
       <HintPath>..\packages\RabbitMQ.Client.3.4.3\lib\net35\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Selkie.Windsor, Version=0.6.202.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selkie.Windsor.0.6.202.0\lib\net45\Selkie.Windsor.dll</HintPath>
+    <Reference Include="Selkie.Windsor, Version=0.6.216.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selkie.Windsor.0.6.216.0\lib\net45\Selkie.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
