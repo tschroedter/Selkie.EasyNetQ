@@ -11,47 +11,59 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
     public sealed class SelkieEasyNetQLoggerTests
     {
         [Fact]
-        public void DebugWriteCallsDebugTest()
+        public void DebugWrite_CallsDebug_WhenCalled()
         {
+            // Arrange
             var logger = Substitute.For <ILogger>();
             var selkieLogger = new SelkieEasyNetQLogger(logger);
 
+            // Act
             selkieLogger.DebugWrite("Text");
 
+            // Assert
             logger.Received().Debug("Text");
         }
 
         [Fact]
-        public void InfoWriteCallsDebugTest()
+        public void InfoWrite_CallsDebug_WhenCalled()
         {
+            // Arrange
             var logger = Substitute.For <ILogger>();
             var selkieLogger = new SelkieEasyNetQLogger(logger);
 
+            // Act
             selkieLogger.InfoWrite("Text");
 
+            // Assert
             logger.Received().Info("Text");
         }
 
         [Fact]
-        public void ErrorWriteCallsDebugTest()
+        public void ErrorWrite_CallsDebug_WhenCalled()
         {
+            // Arrange
             var logger = Substitute.For <ILogger>();
             var selkieLogger = new SelkieEasyNetQLogger(logger);
 
+            // Act
             selkieLogger.ErrorWrite("Text");
 
+            // Assert
             logger.Received().Error("Text");
         }
 
         [Fact]
-        public void ErrorWriteExceptionCallsDebugTest()
+        public void ErrorWriteException_CallsDebug_WhenCalled()
         {
+            // Arrange
             var logger = Substitute.For <ILogger>();
             var selkieLogger = new SelkieEasyNetQLogger(logger);
             var exception = new ArgumentException("Text");
 
+            // Act
             selkieLogger.ErrorWrite(exception);
 
+            // Assert
             logger.Received().Error("An exception has occurred",
                                     exception);
         }
