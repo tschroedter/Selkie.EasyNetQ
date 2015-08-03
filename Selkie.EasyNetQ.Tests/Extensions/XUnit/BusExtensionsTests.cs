@@ -117,7 +117,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
             BusExtensions.FindOrCreatePadlock("subscriptionId");
 
             // Act
-            var actual = BusExtensions.Padlocks [ "subscriptionId" ];
+            object actual = BusExtensions.Padlocks [ "subscriptionId" ];
 
             // Assert
             Assert.NotNull(actual);
@@ -128,12 +128,12 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         {
             // Arrange
             BusExtensions.FindOrCreatePadlock("subscriptionId");
-            var expected = BusExtensions.Padlocks["subscriptionId"];
+            object expected = BusExtensions.Padlocks [ "subscriptionId" ];
 
             BusExtensions.FindOrCreatePadlock("subscriptionId");
 
             // Act
-            var actual = BusExtensions.Padlocks["subscriptionId"];
+            object actual = BusExtensions.Padlocks [ "subscriptionId" ];
 
             // Assert
             Assert.True(expected == actual);

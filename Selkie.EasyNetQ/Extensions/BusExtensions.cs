@@ -12,42 +12,12 @@ namespace Selkie.EasyNetQ.Extensions
     {
         private const int MaxDegreeOfParallelism = 10;
         internal static readonly Dictionary <string, object> Padlocks = new Dictionary <string, object>();
-        private static readonly LimitedConcurrencyLevelTaskScheduler TaskScheduler = new LimitedConcurrencyLevelTaskScheduler(MaxDegreeOfParallelism);
+
+        private static readonly LimitedConcurrencyLevelTaskScheduler TaskScheduler =
+            new LimitedConcurrencyLevelTaskScheduler(MaxDegreeOfParallelism);
+
         private static readonly TaskFactory Factory = new TaskFactory(TaskScheduler);
 
-        // ReSharper disable TooManyArguments
-        public static void SubscribeHandlerAsync <T>([NotNull] this IBus bus,
-                                                     [NotNull] ILogger logger,
-                                                     [NotNull] string subscriptionId,
-                                                     [NotNull] Action <T> handler) where T : class
-        {
-            var padlock = FindOrCreatePadlock(subscriptionId);
-
-            Func <T, Task> func = message => CreateTask(logger,
-                                                        handler,
-                                                        message,
-                                                        padlock);
-
-            bus.SubscribeAsync(subscriptionId,
-                               func);
-        }
-
-        internal static object FindOrCreatePadlock(string subscriptionId)
-        {
-            object padlock;
-
-            if (!Padlocks.TryGetValue(subscriptionId, out padlock))
-            {
-                padlock = new object();
-
-                Padlocks.Add(subscriptionId,
-                               padlock);
-            }
-
-            return padlock;
-        }
-
-        // ReSharper restore TooManyArguments
         [NotNull]
         internal static Task CreateTask <T>([NotNull] ILogger logger,
                                             [NotNull] Action <T> handler,
@@ -69,5 +39,40 @@ namespace Selkie.EasyNetQ.Extensions
 
             return task;
         }
+
+        // ReSharper disable TooManyArguments
+        public static void SubscribeHandlerAsync <T>([NotNull] this IBus bus,
+                                                     [NotNull] ILogger logger,
+                                                     [NotNull] string subscriptionId,
+                                                     [NotNull] Action <T> handler) where T : class
+        {
+            object padlock = FindOrCreatePadlock(subscriptionId);
+
+            Func <T, Task> func = message => CreateTask(logger,
+                                                        handler,
+                                                        message,
+                                                        padlock);
+
+            bus.SubscribeAsync(subscriptionId,
+                               func);
+        }
+
+        internal static object FindOrCreatePadlock(string subscriptionId)
+        {
+            object padlock;
+
+            if ( !Padlocks.TryGetValue(subscriptionId,
+                                       out padlock) )
+            {
+                padlock = new object();
+
+                Padlocks.Add(subscriptionId,
+                             padlock);
+            }
+
+            return padlock;
+        }
+
+        // ReSharper restore TooManyArguments
     }
 }

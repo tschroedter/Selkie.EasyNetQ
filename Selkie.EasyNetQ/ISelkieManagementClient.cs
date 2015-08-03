@@ -13,5 +13,7 @@ namespace Selkie.EasyNetQ
 
         void PurgeQueueForServiceAndMessage([NotNull] string name,
                                             [NotNull] string messageName);
+
+        void CheckOrConfigureRabbitMq();
     }
 }

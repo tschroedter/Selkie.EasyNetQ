@@ -27,7 +27,7 @@ namespace Selkie.EasyNetQ
                                       store);
 
             // ReSharper disable MaximumChainedReferences
-            container.Register(Component.For<ManagementClient>()
+            container.Register(Component.For <ManagementClient>()
                                         .UsingFactoryMethod(ManagementClientLoaderBuilder.CreateLoader)
                                         .LifestyleTransient());
             // ReSharper restore MaximumChainedReferences

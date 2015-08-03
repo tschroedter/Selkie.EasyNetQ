@@ -19,9 +19,13 @@ namespace Selkie.EasyNetQ.Examples
 
             Assembly assembly = typeof ( Installer ).Assembly;
 
-            var register = new RegisterMessageConsumers();
-            register.Register(container,
+            var consumers = container.Resolve<IRegisterMessageConsumers>();
+            consumers.Register(container,
                               assembly);
+            container.Release(consumers);
+
+            var client = container.Resolve <ISelkieManagementClient>();
+            client.CheckOrConfigureRabbitMq();
 
             var bus = container.Resolve <IBus>();
             bus.Publish(new MessageA());

@@ -7,9 +7,9 @@ namespace Selkie.EasyNetQ.Installers
     [ExcludeFromCodeCoverage]
     public class ManagementClientLoaderBuilder
     {
-        private const string HttpLocalhost = "http://localhost";
-        private const string Username = "selkieAdmin";
-        private const string Password = "selkieAdmin";
+        internal const string HttpLocalhost = "http://localhost";
+        internal const string Username = "selkieAdmin";
+        internal const string Password = "selkieAdmin";
 
         public static ManagementClient CreateLoader()
         {

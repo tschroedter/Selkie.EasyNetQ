@@ -71,7 +71,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckOrConfigureRabbitMq.cs" />
     <Compile Include="Extensions\LimitedConcurrencyLevelTaskScheduler.cs" />
+    <Compile Include="ICheckOrConfigureRabbitMq.cs" />
+    <Compile Include="IRegisterMessageConsumers.cs" />
     <Compile Include="ISelkieManagementClient.cs" />
     <Compile Include="Installers\ManagementClientLoaderBuilder.cs" />
     <Compile Include="RegisterMessageConsumers.cs" />

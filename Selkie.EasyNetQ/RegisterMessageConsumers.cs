@@ -5,19 +5,20 @@ using Castle.Core.Logging;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using EasyNetQ.AutoSubscribe;
-using JetBrains.Annotations;
+using Selkie.Windsor;
 using Selkie.Windsor.Extensions;
 
 namespace Selkie.EasyNetQ
 {
     [ExcludeFromCodeCoverage]
     //ncrunch: no coverage start
-    public class RegisterMessageConsumers
+    [ProjectComponent(Lifestyle.Transient)]
+    public class RegisterMessageConsumers : IRegisterMessageConsumers
     {
         private ILogger m_Logger;
 
-        public void Register([NotNull] WindsorContainer container,
-                             [NotNull] Assembly assembly)
+        public void Register(IWindsorContainer container,
+                             Assembly assembly)
         {
             m_Logger = container.Resolve <ILogger>();
 

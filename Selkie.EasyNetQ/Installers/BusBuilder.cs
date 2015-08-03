@@ -9,10 +9,14 @@ namespace Selkie.EasyNetQ.Installers
     //ncrunch: no coverage start
     public class BusBuilder
     {
+        internal const string VirtualHost = "selkie";
+        internal const string Username = "selkie";
+        internal const string Password = "selkie";
+
         public const string ConnectionString = "host=localhost;" +
-                                               "virtualHost=selkie;" +
-                                               "username=selkie;" +
-                                               "password=selkie;" +
+                                               "virtualHost=" + VirtualHost + ";" +
+                                               "username=" + Username + ";" +
+                                               "password=" + Password + ";" +
                                                "prefetchcount=100";
 
         [NotNull]
