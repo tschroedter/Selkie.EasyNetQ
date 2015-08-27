@@ -2,8 +2,8 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Castle.Windsor;
-using EasyNetQ;
-using Selkie.EasyNetQ.Examples.Message;
+using Selkie.EasyNetQ.Examples.Messages;
+using Selkie.Windsor;
 
 namespace Selkie.EasyNetQ.Examples
 {
@@ -19,17 +19,32 @@ namespace Selkie.EasyNetQ.Examples
 
             Assembly assembly = typeof ( Installer ).Assembly;
 
-            var consumers = container.Resolve<IRegisterMessageConsumers>();
+            var consumers = container.Resolve <IRegisterMessageHandlers>();
             consumers.Register(container,
-                              assembly);
+                               assembly);
             container.Release(consumers);
 
             var client = container.Resolve <ISelkieManagementClient>();
             client.CheckOrConfigureRabbitMq();
 
-            var bus = container.Resolve <IBus>();
+            var bus = container.Resolve <ISelkieBus>();
+
+            var logger = container.Resolve <ISelkieLogger>();
+            var subscriber = new TestSubscriber(logger,
+                                                bus);
+
+            subscriber.Subscribe();
+
             bus.Publish(new MessageA());
-            bus.Publish(new MessageB());
+            bus.PublishAsync(new MessageB());
+
+            var inMemoryBus = container.Resolve <ISelkieInMemoryBus>();
+            var exampleSync = new InMemoryBusExampleSync(inMemoryBus);
+            exampleSync.Run();
+
+            var exampleASync = new InMemoryBusExampleASync(inMemoryBus);
+            exampleASync.Run();
+            container.Release(inMemoryBus);
 
             Console.ReadLine();
 

@@ -2,7 +2,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
-using Castle.Core.Logging;
 using EasyNetQ.Management.Client;
 using EasyNetQ.Management.Client.Model;
 using JetBrains.Annotations;
@@ -19,9 +18,9 @@ namespace Selkie.EasyNetQ
         private const string VirtualHostName = "selkie";
         private readonly ManagementClient m_Client;
         private readonly ICheckOrConfigureRabbitMq m_Configure;
-        private readonly ILogger m_Logger;
+        private readonly ISelkieLogger m_Logger;
 
-        public SelkieManagementClient([NotNull] ILogger logger,
+        public SelkieManagementClient([NotNull] ISelkieLogger logger,
                                       [NotNull] ManagementClient client,
                                       [NotNull] ICheckOrConfigureRabbitMq configure)
         {

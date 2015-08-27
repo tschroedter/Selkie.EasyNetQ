@@ -1,5 +1,4 @@
 ﻿using System;
-using Castle.Core.Logging;
 using JetBrains.Annotations;
 using Selkie.Windsor;
 
@@ -8,9 +7,9 @@ namespace Selkie.EasyNetQ
     [ProjectComponent(Lifestyle.Transient)]
     public class SelkieEasyNetQLogger : ISelkieEasyNetQLogger
     {
-        private readonly ILogger m_Logger;
+        private readonly ISelkieLogger m_Logger;
 
-        public SelkieEasyNetQLogger([NotNull] ILogger logger)
+        public SelkieEasyNetQLogger([NotNull] ISelkieLogger logger)
         {
             m_Logger = logger;
         }

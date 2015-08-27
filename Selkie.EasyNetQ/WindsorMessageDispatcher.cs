@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using Castle.Core.Logging;
 using Castle.Windsor;
 using EasyNetQ.AutoSubscribe;
 using JetBrains.Annotations;
+using Selkie.Windsor;
 
 namespace Selkie.EasyNetQ
 {
@@ -13,12 +13,12 @@ namespace Selkie.EasyNetQ
     public class WindsorMessageDispatcher : IAutoSubscriberMessageDispatcher
     {
         private readonly IWindsorContainer m_Container;
-        private readonly ILogger m_Logger;
+        private readonly ISelkieLogger m_Logger;
 
         public WindsorMessageDispatcher([NotNull] IWindsorContainer container)
         {
             m_Container = container;
-            m_Logger = container.Resolve <ILogger>();
+            m_Logger = container.Resolve <ISelkieLogger>();
         }
 
         public void Dispatch <TMessage, TConsumer>([NotNull] TMessage message) where TMessage : class

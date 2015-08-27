@@ -64,8 +64,8 @@
       <HintPath>..\packages\RabbitMQ.Client.3.5.3\lib\net40\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Selkie.Windsor, Version=0.6.220.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selkie.Windsor.0.6.220.0\lib\net45\Selkie.Windsor.dll</HintPath>
+    <Reference Include="Selkie.Windsor, Version=0.6.224.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selkie.Windsor.0.6.224.0\lib\net45\Selkie.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -77,13 +77,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Consumer\MessageAConsumer.cs" />
-    <Compile Include="Consumer\MessageBConsumerAsync.cs" />
+    <Compile Include="Consumer\MessageAHandler.cs" />
+    <Compile Include="Consumer\MessageBHandlerAsync.cs" />
+    <Compile Include="InMemoryBusExampleASync.cs" />
+    <Compile Include="InMemoryBusExampleSync.cs" />
     <Compile Include="Installer.cs" />
-    <Compile Include="Message\MessageA.cs" />
-    <Compile Include="Message\MessageB.cs" />
+    <Compile Include="Messages\MessageA.cs" />
+    <Compile Include="Messages\MessageB.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestSubscriber.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

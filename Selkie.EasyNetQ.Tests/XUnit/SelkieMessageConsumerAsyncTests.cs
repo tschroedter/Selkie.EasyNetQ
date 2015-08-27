@@ -11,7 +11,7 @@ namespace Selkie.EasyNetQ.Tests.XUnit
         public void ConsumeCallsHandle()
         {
             // Arrange
-            var sut = new SelkieMessageConsumerTests.Consumer();
+            var sut = new SelkieMessageConsumerTests.Handler();
 
             // Act
             sut.Handle(new SelkieMessageConsumerTests.TestMessage());
@@ -20,7 +20,7 @@ namespace Selkie.EasyNetQ.Tests.XUnit
             Assert.True(sut.IsHandleCalled);
         }
 
-        internal class Consumer : SelkieMessageConsumerAsync <SelkieMessageConsumerTests.TestMessage>
+        internal class Handler : SelkieMessageHandlerAsync <SelkieMessageConsumerTests.TestMessage>
         {
             public bool IsHandleCalled;
 

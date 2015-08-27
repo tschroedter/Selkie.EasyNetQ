@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
-using Castle.Core.Logging;
 using NSubstitute;
+using Selkie.Windsor;
 using Xunit;
 
 namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
@@ -14,7 +14,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         public void DebugWrite_CallsDebug_WhenCalled()
         {
             // Arrange
-            var logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ISelkieLogger>();
             var selkieLogger = new SelkieEasyNetQLogger(logger);
 
             // Act
@@ -28,7 +28,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         public void InfoWrite_CallsDebug_WhenCalled()
         {
             // Arrange
-            var logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ISelkieLogger>();
             var selkieLogger = new SelkieEasyNetQLogger(logger);
 
             // Act
@@ -42,7 +42,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         public void ErrorWrite_CallsDebug_WhenCalled()
         {
             // Arrange
-            var logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ISelkieLogger>();
             var selkieLogger = new SelkieEasyNetQLogger(logger);
 
             // Act
@@ -56,7 +56,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         public void ErrorWriteException_CallsDebug_WhenCalled()
         {
             // Arrange
-            var logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ISelkieLogger>();
             var selkieLogger = new SelkieEasyNetQLogger(logger);
             var exception = new ArgumentException("Text");
 

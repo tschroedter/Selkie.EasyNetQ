@@ -71,8 +71,8 @@
       <HintPath>..\packages\RabbitMQ.Client.3.5.3\lib\net40\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Selkie.Windsor, Version=0.6.220.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selkie.Windsor.0.6.220.0\lib\net45\Selkie.Windsor.dll</HintPath>
+    <Reference Include="Selkie.Windsor, Version=0.6.224.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selkie.Windsor.0.6.224.0\lib\net45\Selkie.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Selkie.XUnit.Extensions, Version=0.6.90.0, Culture=neutral, processorArchitecture=MSIL">
@@ -96,7 +96,12 @@
   <ItemGroup>
     <Compile Include="Extensions\XUnit\BusExtensionsTests.cs" />
     <Compile Include="Extensions\XUnit\SelkieEasyNetQLoggerTests.cs" />
+    <Compile Include="InMemoryBus\MessageAggregatorTests.cs" />
+    <Compile Include="InMemoryBus\SelkieInMemoryBusTests.cs" />
+    <Compile Include="InMemoryBus\XUnit\SubscriberRepositoryTests.cs" />
+    <Compile Include="InMemoryBus\XUnit\SubscriberStoreTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="XUnit\SelkieBusTests.cs" />
     <Compile Include="XUnit\SelkieMessageConsumerAsyncTests.cs" />
     <Compile Include="XUnit\SelkieMessageConsumerTests.cs" />
   </ItemGroup>

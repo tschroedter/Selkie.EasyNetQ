@@ -118,10 +118,7 @@ namespace Selkie.EasyNetQ.Extensions
                 {
                     return TryExecuteTask(task);
                 }
-                else
-                {
-                    return false;
-                }
+                return false;
             }
             return TryExecuteTask(task);
         }

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Castle.Core.Logging;
 using EasyNetQ;
 using JetBrains.Annotations;
+using Selkie.Windsor;
 using Selkie.Windsor.Extensions;
 
 namespace Selkie.EasyNetQ.Extensions
@@ -19,10 +19,10 @@ namespace Selkie.EasyNetQ.Extensions
         private static readonly TaskFactory Factory = new TaskFactory(TaskScheduler);
 
         [NotNull]
-        internal static Task CreateTask <T>([NotNull] ILogger logger,
+        internal static Task CreateTask <T>([NotNull] ISelkieLogger logger,
                                             [NotNull] Action <T> handler,
                                             [NotNull] T message,
-                                            [NotNull] object padlock) where T : class
+                                            [NotNull] object padlock)
         {
             logger.Debug("Received '{0}' and creating task for it...".Inject(message.GetType()));
 
@@ -35,14 +35,13 @@ namespace Selkie.EasyNetQ.Extensions
                                                  handler(message);
                                              }
                                          },
-                                         TaskCreationOptions.LongRunning);
+                                         TaskCreationOptions.None);
 
             return task;
         }
 
-        // ReSharper disable TooManyArguments
         public static void SubscribeHandlerAsync <T>([NotNull] this IBus bus,
-                                                     [NotNull] ILogger logger,
+                                                     [NotNull] ISelkieLogger logger,
                                                      [NotNull] string subscriptionId,
                                                      [NotNull] Action <T> handler) where T : class
         {
@@ -72,7 +71,5 @@ namespace Selkie.EasyNetQ.Extensions
 
             return padlock;
         }
-
-        // ReSharper restore TooManyArguments
     }
 }

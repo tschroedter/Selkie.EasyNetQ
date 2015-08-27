@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
-using Castle.Core.Logging;
 using EasyNetQ;
 using JetBrains.Annotations;
 using NSubstitute;
 using Selkie.EasyNetQ.Extensions;
+using Selkie.Windsor;
 using Xunit;
 
 namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
@@ -25,7 +25,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         public void CreateTask_CallsLogger_WhenCalled()
         {
             // Arrange
-            var logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ISelkieLogger>();
             var padlock = new object();
 
             // Act
@@ -42,7 +42,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         public void CreateTask_ReturnsTask_WhenCalled()
         {
             // Arrange
-            var logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ISelkieLogger>();
             var padlock = new object();
 
             // Act
@@ -59,7 +59,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         public void CreatedTask_CallsHandler_WhenExecuted()
         {
             // Arrange
-            var logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ISelkieLogger>();
             var padlock = new object();
 
             Task actual = BusExtensions.CreateTask(logger,
@@ -78,7 +78,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         public void CreatedTask_CallsLogger_WhenExecuted()
         {
             // Arrange
-            var logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ISelkieLogger>();
             var padlock = new object();
 
             Task actual = BusExtensions.CreateTask(logger,
@@ -98,7 +98,7 @@ namespace Selkie.EasyNetQ.Tests.Extensions.XUnit
         {
             // Arrange
             var bus = Substitute.For <IBus>();
-            var logger = Substitute.For <ILogger>();
+            var logger = Substitute.For <ISelkieLogger>();
 
             // Act
             bus.SubscribeHandlerAsync <TestMessage>(logger,

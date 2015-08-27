@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Castle.Core.Internal;
-using Castle.Core.Logging;
 using EasyNetQ.Management.Client;
 using EasyNetQ.Management.Client.Model;
 using JetBrains.Annotations;
@@ -18,9 +17,9 @@ namespace Selkie.EasyNetQ
     public class CheckOrConfigureRabbitMq : ICheckOrConfigureRabbitMq
     {
         private readonly ManagementClient m_Client;
-        private readonly ILogger m_Logger;
+        private readonly ISelkieLogger m_Logger;
 
-        public CheckOrConfigureRabbitMq([NotNull] ILogger logger,
+        public CheckOrConfigureRabbitMq([NotNull] ISelkieLogger logger,
                                         [NotNull] ManagementClient client)
         {
             m_Logger = logger;

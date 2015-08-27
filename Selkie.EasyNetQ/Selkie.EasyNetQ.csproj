@@ -63,8 +63,8 @@
       <HintPath>..\packages\RabbitMQ.Client.3.5.3\lib\net40\RabbitMQ.Client.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Selkie.Windsor, Version=0.6.220.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selkie.Windsor.0.6.220.0\lib\net45\Selkie.Windsor.dll</HintPath>
+    <Reference Include="Selkie.Windsor, Version=0.6.224.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selkie.Windsor.0.6.224.0\lib\net45\Selkie.Windsor.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -74,13 +74,25 @@
     <Compile Include="CheckOrConfigureRabbitMq.cs" />
     <Compile Include="Extensions\LimitedConcurrencyLevelTaskScheduler.cs" />
     <Compile Include="ICheckOrConfigureRabbitMq.cs" />
-    <Compile Include="IRegisterMessageConsumers.cs" />
+    <Compile Include="InMemoryBus\IMessageAggregator.cs" />
+    <Compile Include="InMemoryBus\ISubscriberRepository.cs" />
+    <Compile Include="InMemoryBus\ISubscriberRepositoryFactory.cs" />
+    <Compile Include="InMemoryBus\ISubscriberStore.cs" />
+    <Compile Include="InMemoryBus\MessageAggregator.cs" />
+    <Compile Include="InMemoryBus\SubscriberInfo.cs" />
+    <Compile Include="InMemoryBus\SubscriberRepository.cs" />
+    <Compile Include="InMemoryBus\SubscriberStore.cs" />
+    <Compile Include="IRegisterMessageHandlers.cs" />
+    <Compile Include="ISelkieBus.cs" />
+    <Compile Include="ISelkieInMemoryBus.cs" />
+    <Compile Include="SelkieBus.cs" />
     <Compile Include="ISelkieManagementClient.cs" />
     <Compile Include="Installers\ManagementClientLoaderBuilder.cs" />
-    <Compile Include="RegisterMessageConsumers.cs" />
+    <Compile Include="RegisterMessageHandlers.cs" />
+    <Compile Include="InMemoryBus\SelkieInMemoryBus.cs" />
     <Compile Include="SelkieManagementClient.cs" />
-    <Compile Include="SelkieMessageConsumer.cs" />
-    <Compile Include="SelkieMessageConsumerAsync.cs" />
+    <Compile Include="SelkieMessageHandler.cs" />
+    <Compile Include="SelkieMessageHandlerAsync.cs" />
     <Compile Include="Extensions\BusExtensions.cs" />
     <Compile Include="Installer.cs" />
     <Compile Include="Installers\BusBuilder.cs" />
