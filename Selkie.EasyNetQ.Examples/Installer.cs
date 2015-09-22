@@ -10,5 +10,9 @@ namespace Selkie.EasyNetQ.Examples
         : BasicConsoleInstaller,
           IWindsorInstaller
     {
+        public override string GetPrefixOfDllsToInstall()
+        {
+            return "Selkie.";
+        }
     }
 }
