@@ -7,8 +7,8 @@ namespace Selkie.EasyNetQ.InMemoryBus
     [ProjectComponent(Lifestyle.Transient)]
     public class SelkieInMemoryBus : ISelkieInMemoryBus
     {
-        private readonly object m_Padlock = new object();
         private readonly IMessageAggregator m_Aggregator;
+        private readonly object m_Padlock = new object();
         private readonly ISubscriberStore m_Store;
 
         public SelkieInMemoryBus([NotNull] ISubscriberStore store,
