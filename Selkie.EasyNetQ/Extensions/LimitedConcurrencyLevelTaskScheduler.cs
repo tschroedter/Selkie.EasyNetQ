@@ -34,7 +34,7 @@ namespace Selkie.EasyNetQ.Extensions
         }
 
         // Gets the maximum concurrency level supported by this scheduler.  
-        public override sealed int MaximumConcurrencyLevel
+        public sealed override int MaximumConcurrencyLevel
         {
             get
             {
@@ -43,7 +43,7 @@ namespace Selkie.EasyNetQ.Extensions
         }
 
         // Queues a task to the scheduler.  
-        protected override sealed void QueueTask(Task task)
+        protected sealed override void QueueTask(Task task)
         {
             // Add the task to the list of tasks to be processed.  If there aren't enough  
             // delegates currently queued or running to process tasks, schedule another.  
@@ -101,7 +101,7 @@ namespace Selkie.EasyNetQ.Extensions
         }
 
         // Attempts to execute the specified task on the current thread.  
-        protected override sealed bool TryExecuteTaskInline(Task task,
+        protected sealed override bool TryExecuteTaskInline(Task task,
                                                             bool taskWasPreviouslyQueued)
         {
             // If this thread isn't already processing a task, we don't support inlining 
@@ -124,14 +124,14 @@ namespace Selkie.EasyNetQ.Extensions
         }
 
         // Attempt to remove a previously scheduled task from the scheduler.  
-        protected override sealed bool TryDequeue(Task task)
+        protected sealed override bool TryDequeue(Task task)
         {
             lock ( m_Tasks )
                 return m_Tasks.Remove(task);
         }
 
         // Gets an enumerable of the tasks currently scheduled on this scheduler.  
-        protected override sealed IEnumerable <Task> GetScheduledTasks()
+        protected sealed override IEnumerable <Task> GetScheduledTasks()
         {
             var lockTaken = false;
             try

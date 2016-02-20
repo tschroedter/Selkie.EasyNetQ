@@ -11,7 +11,7 @@ namespace Selkie.EasyNetQ.Tests.XUnit
         public void ConsumeCallsHandle()
         {
             // Arrange
-            var sut = new SelkieMessageConsumerTests.Handler();
+            var sut = new Handler();
 
             // Act
             sut.Handle(new SelkieMessageConsumerTests.TestMessage());
