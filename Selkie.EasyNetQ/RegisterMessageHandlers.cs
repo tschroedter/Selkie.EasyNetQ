@@ -50,6 +50,10 @@ namespace Selkie.EasyNetQ
             {
                 m_Logger.Info("Message Consumer: Registered {0}.".Inject(type.FullName));
             }
+            else
+            {
+                m_Logger.Debug("Message Consumer: Ignored {0}.".Inject(type.FullName));
+            }
 
             return isCosumer;
         }
