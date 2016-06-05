@@ -22,13 +22,13 @@ namespace Selkie.EasyNetQ.InMemoryBus
         public void Subscribe <TMessage>(string subscriptionId,
                                          Action <TMessage> handler)
         {
-            if ( !m_Subscribers.ContainsKey(typeof ( TMessage )) )
+            if ( !m_Subscribers.ContainsKey(typeof( TMessage )) )
             {
-                m_Subscribers.Add(typeof ( TMessage ),
+                m_Subscribers.Add(typeof( TMessage ),
                                   new Dictionary <string, object>());
             }
 
-            Dictionary <string, object> subscriptionIds = m_Subscribers [ typeof ( TMessage ) ];
+            Dictionary <string, object> subscriptionIds = m_Subscribers [ typeof( TMessage ) ];
 
             if ( subscriptionIds.ContainsKey(subscriptionId) )
             {
@@ -44,12 +44,12 @@ namespace Selkie.EasyNetQ.InMemoryBus
 
         public void Unsubscribe <TMessage>(string subscriptionId)
         {
-            if ( !m_Subscribers.ContainsKey(typeof ( TMessage )) )
+            if ( !m_Subscribers.ContainsKey(typeof( TMessage )) )
             {
                 return;
             }
 
-            Dictionary <string, object> subscriptionIds = m_Subscribers [ typeof ( TMessage ) ];
+            Dictionary <string, object> subscriptionIds = m_Subscribers [ typeof( TMessage ) ];
 
             if ( subscriptionIds.ContainsKey(subscriptionId) )
             {
@@ -58,18 +58,18 @@ namespace Selkie.EasyNetQ.InMemoryBus
 
             if ( !subscriptionIds.Any() )
             {
-                m_Subscribers.Remove(typeof ( TMessage ));
+                m_Subscribers.Remove(typeof( TMessage ));
             }
         }
 
         public IEnumerable <SubscriberInfo <TMessage>> Subscribers <TMessage>()
         {
-            if ( !m_Subscribers.ContainsKey(typeof ( TMessage )) )
+            if ( !m_Subscribers.ContainsKey(typeof( TMessage )) )
             {
                 return new SubscriberInfo <TMessage>[0];
             }
 
-            Dictionary <string, object> subscriptions = m_Subscribers [ typeof ( TMessage ) ];
+            Dictionary <string, object> subscriptions = m_Subscribers [ typeof( TMessage ) ];
 
             IEnumerable <SubscriberInfo <TMessage>> subscribers =
                 subscriptions.Values.Cast <SubscriberInfo <TMessage>>();
@@ -79,12 +79,12 @@ namespace Selkie.EasyNetQ.InMemoryBus
 
         internal IEnumerable <string> GetSubscriptionIdsForMessage <TMessage>()
         {
-            if ( !m_Subscribers.ContainsKey(typeof ( TMessage )) )
+            if ( !m_Subscribers.ContainsKey(typeof( TMessage )) )
             {
                 return new string[0];
             }
 
-            Dictionary <string, object> subscriptionIds = m_Subscribers [ typeof ( TMessage ) ];
+            Dictionary <string, object> subscriptionIds = m_Subscribers [ typeof( TMessage ) ];
 
             return subscriptionIds.Keys.ToArray();
         }

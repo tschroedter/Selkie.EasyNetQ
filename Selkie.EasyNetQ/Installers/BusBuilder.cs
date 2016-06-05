@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 namespace Selkie.EasyNetQ.Installers
 {
     [ExcludeFromCodeCoverage]
-    //ncrunch: no coverage start
     public class BusBuilder
     {
         internal const string VirtualHost = "selkie";

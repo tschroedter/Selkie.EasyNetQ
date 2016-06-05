@@ -9,15 +9,15 @@ namespace Selkie.EasyNetQ
     [ProjectComponent(Lifestyle.Transient)]
     public class SelkieBus : ISelkieBus
     {
-        private readonly IBus m_Bus;
-        private readonly ISelkieLogger m_Logger;
-
         public SelkieBus([NotNull] ISelkieLogger logger,
                          [NotNull] IBus bus)
         {
             m_Logger = logger;
             m_Bus = bus;
         }
+
+        private readonly IBus m_Bus;
+        private readonly ISelkieLogger m_Logger;
 
         public void Publish <T>(T message)
             where T : class

@@ -7,10 +7,6 @@ namespace Selkie.EasyNetQ.Examples
 {
     public class InMemoryBusExampleSync
     {
-        private readonly ISelkieInMemoryBus m_InMemoryBus;
-        private readonly int[] m_TestSync = new int[100];
-        private int m_IndexSync;
-
         public InMemoryBusExampleSync(ISelkieInMemoryBus inMemoryBus)
         {
             m_InMemoryBus = inMemoryBus;
@@ -21,6 +17,10 @@ namespace Selkie.EasyNetQ.Examples
             m_InMemoryBus.Subscribe <MessageA>("two",
                                                AHandlerTwo);
         }
+
+        private readonly ISelkieInMemoryBus m_InMemoryBus;
+        private readonly int[] m_TestSync = new int[100];
+        private int m_IndexSync;
 
         public void Run()
         {

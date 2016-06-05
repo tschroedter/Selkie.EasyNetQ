@@ -5,7 +5,6 @@ using JetBrains.Annotations;
 namespace Selkie.EasyNetQ
 {
     [ExcludeFromCodeCoverage]
-    //ncrunch: no coverage start
     public abstract class SelkieMessageHandler <T> : IConsume <T>
         where T : class
     {

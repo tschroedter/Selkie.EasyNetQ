@@ -8,14 +8,14 @@ namespace Selkie.EasyNetQ.InMemoryBus
     [ProjectComponent(Lifestyle.Singleton)]
     public class SubscriberStore : ISubscriberStore
     {
-        private readonly ISubscriberRepository m_AsyncRepository;
-        private readonly ISubscriberRepository m_Repository;
-
         public SubscriberStore([NotNull] ISubscriberRepositoryFactory factory)
         {
             m_Repository = factory.Create();
             m_AsyncRepository = factory.Create();
         }
+
+        private readonly ISubscriberRepository m_AsyncRepository;
+        private readonly ISubscriberRepository m_Repository;
 
         public void SubscribeAsync <TMessage>(string subscriptionId,
                                               Action <TMessage> handler)

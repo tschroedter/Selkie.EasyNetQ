@@ -10,7 +10,6 @@ using Selkie.Windsor.Extensions;
 namespace Selkie.EasyNetQ
 {
     [ExcludeFromCodeCoverage]
-    //ncrunch: no coverage start
     [ProjectComponent(Lifestyle.Transient)]
     public class RegisterMessageHandlers : IRegisterMessageHandlers
     {
@@ -35,13 +34,6 @@ namespace Selkie.EasyNetQ
             container.Release(m_Logger);
         }
 
-        private bool IsMessageHandler(Type type)
-        {
-            string name = type.Name;
-
-            return name.EndsWith("HandlerAsync") || name.EndsWith("Handler");
-        }
-
         private bool IsMessageConsumerLogged(Type type)
         {
             bool isCosumer = IsMessageHandler(type);
@@ -56,6 +48,13 @@ namespace Selkie.EasyNetQ
             }
 
             return isCosumer;
+        }
+
+        private bool IsMessageHandler(Type type)
+        {
+            string name = type.Name;
+
+            return name.EndsWith("HandlerAsync") || name.EndsWith("Handler");
         }
     }
 }

@@ -7,12 +7,12 @@ namespace Selkie.EasyNetQ
     [ProjectComponent(Lifestyle.Transient)]
     public class SelkieEasyNetQLogger : ISelkieEasyNetQLogger
     {
-        private readonly ISelkieLogger m_Logger;
-
         public SelkieEasyNetQLogger([NotNull] ISelkieLogger logger)
         {
             m_Logger = logger;
         }
+
+        private readonly ISelkieLogger m_Logger;
 
         public void DebugWrite([NotNull] string format,
                                [NotNull] params object[] args)

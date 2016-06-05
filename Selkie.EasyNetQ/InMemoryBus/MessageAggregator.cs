@@ -9,9 +9,6 @@ namespace Selkie.EasyNetQ.InMemoryBus
     [ProjectComponent(Lifestyle.Singleton)]
     public class MessageAggregator : IMessageAggregator
     {
-        private readonly ISelkieLogger m_Logger;
-        private readonly ISubscriberStore m_Store;
-
         public MessageAggregator([NotNull] ISelkieLogger logger,
                                  [NotNull] ISubscriberStore store)
         {
@@ -19,7 +16,11 @@ namespace Selkie.EasyNetQ.InMemoryBus
             m_Store = store;
         }
 
+        [UsedImplicitly]
         internal bool IsCallAllHandlersSync { get; set; }
+
+        private readonly ISelkieLogger m_Logger;
+        private readonly ISubscriberStore m_Store;
 
         public void Publish <T>(T message)
         {
@@ -39,6 +40,20 @@ namespace Selkie.EasyNetQ.InMemoryBus
                               m_Store.SubscribersAsync <T>());
         }
 
+        private void CallHandlers <T>(T message,
+                                      [NotNull] IEnumerable <SubscriberInfo <T>> information)
+        {
+            foreach ( SubscriberInfo <T> info in information )
+            {
+                object padlock = BusExtensions.FindOrCreatePadlock(info.SubscriptionId);
+
+                lock ( padlock )
+                {
+                    info.Handler(message);
+                }
+            }
+        }
+
         private void CallHandlersAsync <T>([NotNull] T message,
                                            [NotNull] IEnumerable <SubscriberInfo <T>> information)
         {
@@ -54,20 +69,6 @@ namespace Selkie.EasyNetQ.InMemoryBus
                 if ( IsCallAllHandlersSync )
                 {
                     task.Wait(5000);
-                }
-            }
-        }
-
-        private void CallHandlers <T>(T message,
-                                      [NotNull] IEnumerable <SubscriberInfo <T>> information)
-        {
-            foreach ( SubscriberInfo <T> info in information )
-            {
-                object padlock = BusExtensions.FindOrCreatePadlock(info.SubscriptionId);
-
-                lock ( padlock )
-                {
-                    info.Handler(message);
                 }
             }
         }

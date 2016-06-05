@@ -18,6 +18,22 @@ namespace Selkie.EasyNetQ.Extensions
 
         private static readonly TaskFactory Factory = new TaskFactory(TaskScheduler);
 
+        public static void SubscribeHandlerAsync <T>([NotNull] this IBus bus,
+                                                     [NotNull] ISelkieLogger logger,
+                                                     [NotNull] string subscriptionId,
+                                                     [NotNull] Action <T> handler) where T : class
+        {
+            object padlock = FindOrCreatePadlock(subscriptionId);
+
+            Func <T, Task> func = message => CreateTask(logger,
+                                                        handler,
+                                                        message,
+                                                        padlock);
+
+            bus.SubscribeAsync(subscriptionId,
+                               func);
+        }
+
         [NotNull]
         internal static Task CreateTask <T>([NotNull] ISelkieLogger logger,
                                             [NotNull] Action <T> handler,
@@ -40,34 +56,20 @@ namespace Selkie.EasyNetQ.Extensions
             return task;
         }
 
-        public static void SubscribeHandlerAsync <T>([NotNull] this IBus bus,
-                                                     [NotNull] ISelkieLogger logger,
-                                                     [NotNull] string subscriptionId,
-                                                     [NotNull] Action <T> handler) where T : class
-        {
-            object padlock = FindOrCreatePadlock(subscriptionId);
-
-            Func <T, Task> func = message => CreateTask(logger,
-                                                        handler,
-                                                        message,
-                                                        padlock);
-
-            bus.SubscribeAsync(subscriptionId,
-                               func);
-        }
-
         internal static object FindOrCreatePadlock(string subscriptionId)
         {
             object padlock;
 
-            if ( !Padlocks.TryGetValue(subscriptionId,
-                                       out padlock) )
+            if ( Padlocks.TryGetValue(subscriptionId,
+                                      out padlock) )
             {
-                padlock = new object();
-
-                Padlocks.Add(subscriptionId,
-                             padlock);
+                return padlock;
             }
+
+            padlock = new object();
+
+            Padlocks.Add(subscriptionId,
+                         padlock);
 
             return padlock;
         }

@@ -8,7 +8,6 @@ using Selkie.Windsor;
 
 namespace Selkie.EasyNetQ
 {
-    //ncrunch: no coverage start
     [ExcludeFromCodeCoverage]
     public class Installer : BaseInstaller <Installer>
     {
@@ -31,11 +30,9 @@ namespace Selkie.EasyNetQ
             dispatcherBuilder.Install(container,
                                       store);
 
-            // ReSharper disable MaximumChainedReferences
             container.Register(Component.For <ManagementClient>()
                                         .UsingFactoryMethod(ManagementClientLoaderBuilder.CreateLoader)
                                         .LifestyleTransient());
-            // ReSharper restore MaximumChainedReferences
         }
     }
 }

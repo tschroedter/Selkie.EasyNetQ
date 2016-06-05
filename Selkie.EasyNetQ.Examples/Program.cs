@@ -2,13 +2,14 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Castle.Windsor;
+using JetBrains.Annotations;
 using Selkie.EasyNetQ.Examples.Messages;
 using Selkie.Windsor;
 
 namespace Selkie.EasyNetQ.Examples
 {
+    [UsedImplicitly]
     [ExcludeFromCodeCoverage]
-    //ncrunch: no coverage start
     public class Program
     {
         public static void Main()
@@ -17,7 +18,7 @@ namespace Selkie.EasyNetQ.Examples
             var installer = new Installer();
             container.Install(installer);
 
-            Assembly assembly = typeof ( Installer ).Assembly;
+            Assembly assembly = typeof( Installer ).Assembly;
 
             var consumers = container.Resolve <IRegisterMessageHandlers>();
             consumers.Register(container,

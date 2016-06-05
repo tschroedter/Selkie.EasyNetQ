@@ -11,7 +11,8 @@ namespace Selkie.EasyNetQ.InMemoryBus
         void Subscribe <TMessage>([NotNull] string subscriptionId,
                                   [NotNull] Action <TMessage> handler);
 
-        void Unsubscribe <TMessage>([NotNull] string subscriptionId);
         IEnumerable <SubscriberInfo <TMessage>> Subscribers <TMessage>();
+
+        void Unsubscribe <TMessage>([NotNull] string subscriptionId);
     }
 }

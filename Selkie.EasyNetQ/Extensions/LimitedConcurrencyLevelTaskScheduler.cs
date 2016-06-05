@@ -6,23 +6,12 @@ using System.Threading.Tasks;
 
 namespace Selkie.EasyNetQ.Extensions
 {
-    //ncrunch: no coverage start
     [ExcludeFromCodeCoverage]
     // https://msdn.microsoft.com/en-us/library/ee789351
     // Provides a task scheduler that ensures a maximum concurrency level while  
     // running on top of the thread pool. 
     public class LimitedConcurrencyLevelTaskScheduler : TaskScheduler
     {
-        // Indicates whether the current thread is processing work items.
-        [ThreadStatic]
-        private static bool s_CurrentThreadIsProcessingItems;
-
-        // The maximum concurrency level allowed by this scheduler.  
-        private readonly int m_MaxDegreeOfParallelism;
-        // The list of tasks to be executed  
-        private readonly LinkedList <Task> m_Tasks = new LinkedList <Task>(); // protected by lock(_tasks) 
-        // Indicates whether the scheduler is currently processing work items.  
-        private int m_DelegatesQueuedOrRunning;
         // Creates a new instance with the specified degree of parallelism.  
         public LimitedConcurrencyLevelTaskScheduler(int maxDegreeOfParallelism)
         {
@@ -33,12 +22,49 @@ namespace Selkie.EasyNetQ.Extensions
             m_MaxDegreeOfParallelism = maxDegreeOfParallelism;
         }
 
+        // Indicates whether the current thread is processing work items.
+        [ThreadStatic]
+        private static bool s_CurrentThreadIsProcessingItems;
+
         // Gets the maximum concurrency level supported by this scheduler.  
         public sealed override int MaximumConcurrencyLevel
         {
             get
             {
                 return m_MaxDegreeOfParallelism;
+            }
+        }
+
+        // The maximum concurrency level allowed by this scheduler.  
+        private readonly int m_MaxDegreeOfParallelism;
+        // The list of tasks to be executed  
+        private readonly LinkedList <Task> m_Tasks = new LinkedList <Task>(); // protected by lock(_tasks) 
+        // Indicates whether the scheduler is currently processing work items.  
+        private int m_DelegatesQueuedOrRunning;
+
+        // Gets an enumerable of the tasks currently scheduled on this scheduler.  
+        protected sealed override IEnumerable <Task> GetScheduledTasks()
+        {
+            var lockTaken = false;
+            try
+            {
+                Monitor.TryEnter(m_Tasks,
+                                 ref lockTaken);
+                if ( lockTaken )
+                {
+                    return m_Tasks;
+                }
+                else
+                {
+                    throw new NotSupportedException();
+                }
+            }
+            finally
+            {
+                if ( lockTaken )
+                {
+                    Monitor.Exit(m_Tasks);
+                }
             }
         }
 
@@ -50,12 +76,39 @@ namespace Selkie.EasyNetQ.Extensions
             lock ( m_Tasks )
             {
                 m_Tasks.AddLast(task);
-                if ( m_DelegatesQueuedOrRunning < m_MaxDegreeOfParallelism )
+                if ( m_DelegatesQueuedOrRunning >= m_MaxDegreeOfParallelism )
                 {
-                    ++m_DelegatesQueuedOrRunning;
-                    NotifyThreadPoolOfPendingWork();
+                    return;
                 }
+                ++m_DelegatesQueuedOrRunning;
+                NotifyThreadPoolOfPendingWork();
             }
+        }
+
+        // Attempt to remove a previously scheduled task from the scheduler.  
+        protected sealed override bool TryDequeue(Task task)
+        {
+            lock ( m_Tasks )
+                return m_Tasks.Remove(task);
+        }
+
+        // Attempts to execute the specified task on the current thread.  
+        protected sealed override bool TryExecuteTaskInline(Task task,
+                                                            bool taskWasPreviouslyQueued)
+        {
+            // If this thread isn't already processing a task, we don't support inlining 
+            if ( !s_CurrentThreadIsProcessingItems )
+            {
+                return false;
+            }
+
+            // If the task was previously queued, remove it from the queue 
+            if ( taskWasPreviouslyQueued )
+            {
+                // Try to run the task.  
+                return TryDequeue(task) && TryExecuteTask(task);
+            }
+            return TryExecuteTask(task);
         }
 
         // Inform the ThreadPool that there's work to be executed for this scheduler.  
@@ -98,62 +151,6 @@ namespace Selkie.EasyNetQ.Extensions
                                                    }
                                                },
                                                null);
-        }
-
-        // Attempts to execute the specified task on the current thread.  
-        protected sealed override bool TryExecuteTaskInline(Task task,
-                                                            bool taskWasPreviouslyQueued)
-        {
-            // If this thread isn't already processing a task, we don't support inlining 
-            if ( !s_CurrentThreadIsProcessingItems )
-            {
-                return false;
-            }
-
-            // If the task was previously queued, remove it from the queue 
-            if ( taskWasPreviouslyQueued )
-            {
-                // Try to run the task.  
-                if ( TryDequeue(task) )
-                {
-                    return TryExecuteTask(task);
-                }
-                return false;
-            }
-            return TryExecuteTask(task);
-        }
-
-        // Attempt to remove a previously scheduled task from the scheduler.  
-        protected sealed override bool TryDequeue(Task task)
-        {
-            lock ( m_Tasks )
-                return m_Tasks.Remove(task);
-        }
-
-        // Gets an enumerable of the tasks currently scheduled on this scheduler.  
-        protected sealed override IEnumerable <Task> GetScheduledTasks()
-        {
-            var lockTaken = false;
-            try
-            {
-                Monitor.TryEnter(m_Tasks,
-                                 ref lockTaken);
-                if ( lockTaken )
-                {
-                    return m_Tasks;
-                }
-                else
-                {
-                    throw new NotSupportedException();
-                }
-            }
-            finally
-            {
-                if ( lockTaken )
-                {
-                    Monitor.Exit(m_Tasks);
-                }
-            }
         }
     }
 }

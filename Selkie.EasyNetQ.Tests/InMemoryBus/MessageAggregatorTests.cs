@@ -1,47 +1,43 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
 using NSubstitute;
+using NUnit.Framework;
 using Selkie.EasyNetQ.InMemoryBus;
+using Selkie.NUnit.Extensions;
 using Selkie.Windsor;
-using Selkie.XUnit.Extensions;
-using Xunit;
-using Xunit.Extensions;
 
 namespace Selkie.EasyNetQ.Tests.InMemoryBus
 {
     [ExcludeFromCodeCoverage]
-    //ncrunch: no coverage start
+    [TestFixture]
     public sealed class MessageAggregatorTests
     {
-        [Theory]
-        [AutoNSubstituteData]
-        public void Publish_CallsActionsForSync_WhenCalled([NotNull] TestHandler one,
-                                                           [NotNull] TestHandler two)
+        private MessageAggregator CreateSut(ISubscriberStore store)
         {
-            // Arrange
-            var handlers = new[]
-                           {
-                               new SubscriberInfo <TestMessage>("one",
-                                                                one.Handle),
-                               new SubscriberInfo <TestMessage>("two",
-                                                                two.Handle)
-                           };
+            var sut = new MessageAggregator(Substitute.For <ISelkieLogger>(),
+                                            store)
+                      {
+                          IsCallAllHandlersSync = true
+                      };
 
-            var store = Substitute.For <ISubscriberStore>();
-            store.Subscribers <TestMessage>().Returns(handlers);
-            MessageAggregator sut = CreateSut(store);
-
-            // Act
-            sut.Publish(new TestMessage());
-
-            // Assert
-            Assert.True(one.WasCalled,
-                        "one.WasCalled");
-            Assert.True(two.WasCalled,
-                        "two.WasCalled");
+            return sut;
         }
 
-        [Theory]
+        public class TestHandler
+        {
+            public bool WasCalled { get; set; }
+
+            public void Handle([NotNull] TestMessage message)
+            {
+                WasCalled = true;
+            }
+        }
+
+        public class TestMessage
+        {
+        }
+
+        [Test]
         [AutoNSubstituteData]
         public void Publish_CallsActionsForASync_WhenCalled([NotNull] TestHandler one,
                                                             [NotNull] TestHandler two)
@@ -69,10 +65,10 @@ namespace Selkie.EasyNetQ.Tests.InMemoryBus
                         "two.WasCalled");
         }
 
-        [Theory]
+        [Test]
         [AutoNSubstituteData]
-        public void PublishAsync_CallsActionsForSync_WhenCalled([NotNull] TestHandler one,
-                                                                [NotNull] TestHandler two)
+        public void Publish_CallsActionsForSync_WhenCalled([NotNull] TestHandler one,
+                                                           [NotNull] TestHandler two)
         {
             // Arrange
             var handlers = new[]
@@ -88,7 +84,7 @@ namespace Selkie.EasyNetQ.Tests.InMemoryBus
             MessageAggregator sut = CreateSut(store);
 
             // Act
-            sut.PublishAsync(new TestMessage());
+            sut.Publish(new TestMessage());
 
             // Assert
             Assert.True(one.WasCalled,
@@ -97,7 +93,7 @@ namespace Selkie.EasyNetQ.Tests.InMemoryBus
                         "two.WasCalled");
         }
 
-        [Theory]
+        [Test]
         [AutoNSubstituteData]
         public void PublishAsync_CallsActionsForASync_WhenCalled([NotNull] TestHandler one,
                                                                  [NotNull] TestHandler two)
@@ -125,29 +121,32 @@ namespace Selkie.EasyNetQ.Tests.InMemoryBus
                         "two.WasCalled");
         }
 
-        private MessageAggregator CreateSut(ISubscriberStore store)
+        [Test]
+        [AutoNSubstituteData]
+        public void PublishAsync_CallsActionsForSync_WhenCalled([NotNull] TestHandler one,
+                                                                [NotNull] TestHandler two)
         {
-            var sut = new MessageAggregator(Substitute.For <ISelkieLogger>(),
-                                            store)
-                      {
-                          IsCallAllHandlersSync = true
-                      };
+            // Arrange
+            var handlers = new[]
+                           {
+                               new SubscriberInfo <TestMessage>("one",
+                                                                one.Handle),
+                               new SubscriberInfo <TestMessage>("two",
+                                                                two.Handle)
+                           };
 
-            return sut;
-        }
+            var store = Substitute.For <ISubscriberStore>();
+            store.Subscribers <TestMessage>().Returns(handlers);
+            MessageAggregator sut = CreateSut(store);
 
-        public class TestHandler
-        {
-            public bool WasCalled { get; set; }
+            // Act
+            sut.PublishAsync(new TestMessage());
 
-            public void Handle([NotNull] TestMessage message)
-            {
-                WasCalled = true;
-            }
-        }
-
-        public class TestMessage
-        {
+            // Assert
+            Assert.True(one.WasCalled,
+                        "one.WasCalled");
+            Assert.True(two.WasCalled,
+                        "two.WasCalled");
         }
     }
 }

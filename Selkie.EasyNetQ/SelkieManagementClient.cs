@@ -12,14 +12,8 @@ namespace Selkie.EasyNetQ
 {
     [ExcludeFromCodeCoverage]
     [ProjectComponent(Lifestyle.Transient)]
-    //ncrunch: no coverage start
     public class SelkieManagementClient : ISelkieManagementClient
     {
-        private const string VirtualHostName = "selkie";
-        private readonly ManagementClient m_Client;
-        private readonly ICheckOrConfigureRabbitMq m_Configure;
-        private readonly ISelkieLogger m_Logger;
-
         public SelkieManagementClient([NotNull] ISelkieLogger logger,
                                       [NotNull] ManagementClient client,
                                       [NotNull] ICheckOrConfigureRabbitMq configure)
@@ -28,6 +22,11 @@ namespace Selkie.EasyNetQ
             m_Client = client;
             m_Configure = configure;
         }
+
+        private const string VirtualHostName = "selkie";
+        private readonly ManagementClient m_Client;
+        private readonly ICheckOrConfigureRabbitMq m_Configure;
+        private readonly ISelkieLogger m_Logger;
 
         public void DeleteAllBindings()
         {
@@ -97,13 +96,14 @@ namespace Selkie.EasyNetQ
 
             foreach ( Queue queue in m_Client.GetQueues() )
             {
-                if ( VirtualHostName == queue.Vhost &&
-                     queue.Name.Contains(withContainingString) )
+                if ( VirtualHostName != queue.Vhost ||
+                     !queue.Name.Contains(withContainingString) )
                 {
-                    EmptyQueue(m_Client,
-                               queue);
-                    m_Client.Purge(queue);
+                    continue;
                 }
+                EmptyQueue(m_Client,
+                           queue);
+                m_Client.Purge(queue);
             }
         }
 
@@ -112,15 +112,16 @@ namespace Selkie.EasyNetQ
         {
             foreach ( Queue queue in m_Client.GetQueues() )
             {
-                if ( VirtualHostName == queue.Vhost )
+                if ( VirtualHostName != queue.Vhost )
                 {
-                    string queueName = queue.Name;
+                    continue;
+                }
+                string queueName = queue.Name;
 
-                    if ( queueName.Contains(name) &&
-                         queueName.Contains(messageName) )
-                    {
-                        m_Client.Purge(queue);
-                    }
+                if ( queueName.Contains(name) &&
+                     queueName.Contains(messageName) )
+                {
+                    m_Client.Purge(queue);
                 }
             }
         }

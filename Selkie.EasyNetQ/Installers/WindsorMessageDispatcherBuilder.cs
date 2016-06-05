@@ -6,7 +6,6 @@ using JetBrains.Annotations;
 
 namespace Selkie.EasyNetQ.Installers
 {
-    //ncrunch: no coverage start
     [ExcludeFromCodeCoverage]
     public class WindsorMessageDispatcherBuilder
     {

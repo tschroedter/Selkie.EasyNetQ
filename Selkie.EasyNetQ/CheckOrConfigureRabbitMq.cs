@@ -11,20 +11,19 @@ using Selkie.Windsor.Extensions;
 
 namespace Selkie.EasyNetQ
 {
-    //ncrunch: no coverage start
     [ExcludeFromCodeCoverage]
     [ProjectComponent(Lifestyle.Transient)]
     public class CheckOrConfigureRabbitMq : ICheckOrConfigureRabbitMq
     {
-        private readonly ManagementClient m_Client;
-        private readonly ISelkieLogger m_Logger;
-
         public CheckOrConfigureRabbitMq([NotNull] ISelkieLogger logger,
                                         [NotNull] ManagementClient client)
         {
             m_Logger = logger;
             m_Client = client;
         }
+
+        private readonly ManagementClient m_Client;
+        private readonly ISelkieLogger m_Logger;
 
         public void CheckOrConfigure()
         {
@@ -39,26 +38,6 @@ namespace Selkie.EasyNetQ
                                    BusBuilder.Password,
                                    "",
                                    vhost);
-        }
-
-        private Vhost CheckOrCreateVirtualHost([NotNull] string virtualHost)
-        {
-            IEnumerable <Vhost> hosts = m_Client.GetVHosts();
-
-            Vhost selkieHost = hosts.FirstOrDefault(x => x.Name == virtualHost);
-
-            if ( selkieHost != null )
-            {
-                m_Logger.Info("Found RabbitMQ VirtualHost {0}!".Inject(virtualHost));
-            }
-            else
-            {
-                selkieHost = m_Client.CreateVirtualHost(virtualHost);
-
-                m_Logger.Info("Created missing RabbitMQ VirtualHost {0}!".Inject(virtualHost));
-            }
-
-            return selkieHost;
         }
 
         private void CheckOrAddRabbitMqUser([NotNull] string username,
@@ -81,6 +60,26 @@ namespace Selkie.EasyNetQ
                                    tag,
                                    vhost);
             }
+        }
+
+        private Vhost CheckOrCreateVirtualHost([NotNull] string virtualHost)
+        {
+            IEnumerable <Vhost> hosts = m_Client.GetVHosts();
+
+            Vhost selkieHost = hosts.FirstOrDefault(x => x.Name == virtualHost);
+
+            if ( selkieHost != null )
+            {
+                m_Logger.Info("Found RabbitMQ VirtualHost {0}!".Inject(virtualHost));
+            }
+            else
+            {
+                selkieHost = m_Client.CreateVirtualHost(virtualHost);
+
+                m_Logger.Info("Created missing RabbitMQ VirtualHost {0}!".Inject(virtualHost));
+            }
+
+            return selkieHost;
         }
 
         private void CreateRabbitMqUser([NotNull] string username,

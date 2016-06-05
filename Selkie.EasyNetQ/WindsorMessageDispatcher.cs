@@ -8,18 +8,17 @@ using Selkie.Windsor;
 
 namespace Selkie.EasyNetQ
 {
-    //ncrunch: no coverage start
     [ExcludeFromCodeCoverage]
     public class WindsorMessageDispatcher : IAutoSubscriberMessageDispatcher
     {
-        private readonly IWindsorContainer m_Container;
-        private readonly ISelkieLogger m_Logger;
-
         public WindsorMessageDispatcher([NotNull] IWindsorContainer container)
         {
             m_Container = container;
             m_Logger = container.Resolve <ISelkieLogger>();
         }
+
+        private readonly IWindsorContainer m_Container;
+        private readonly ISelkieLogger m_Logger;
 
         public void Dispatch <TMessage, TConsumer>([NotNull] TMessage message) where TMessage : class
             where TConsumer : IConsume <TMessage>

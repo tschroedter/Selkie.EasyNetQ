@@ -7,15 +7,15 @@ namespace Selkie.EasyNetQ.Examples
 {
     public class TestSubscriber
     {
-        private readonly ISelkieBus m_Bus;
-        private readonly ISelkieLogger m_Logger;
-
         public TestSubscriber([NotNull] ISelkieLogger logger,
                               [NotNull] ISelkieBus bus)
         {
             m_Logger = logger;
             m_Bus = bus;
         }
+
+        private readonly ISelkieBus m_Bus;
+        private readonly ISelkieLogger m_Logger;
 
         public void Subscribe()
         {
@@ -25,6 +25,11 @@ namespace Selkie.EasyNetQ.Examples
                                        AHandler);
             m_Bus.SubscribeAsync <MessageB>(subscriptionId,
                                             BHandler);
+        }
+
+        private void AHandler(MessageA message)
+        {
+            LogReceivedMessage(message);
         }
 
         private void BHandler(MessageB message)
@@ -38,11 +43,6 @@ namespace Selkie.EasyNetQ.Examples
                                                                    GetType().Name,
                                                                    message.GetType().Name);
             m_Logger.Info(text);
-        }
-
-        private void AHandler(MessageA message)
-        {
-            LogReceivedMessage(message);
         }
     }
 }

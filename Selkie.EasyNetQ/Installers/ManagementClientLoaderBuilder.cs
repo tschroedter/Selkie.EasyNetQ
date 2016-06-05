@@ -3,7 +3,6 @@ using EasyNetQ.Management.Client;
 
 namespace Selkie.EasyNetQ.Installers
 {
-    //ncrunch: no coverage start
     [ExcludeFromCodeCoverage]
     public class ManagementClientLoaderBuilder
     {
