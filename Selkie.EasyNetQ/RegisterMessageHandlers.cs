@@ -28,10 +28,18 @@ namespace Selkie.EasyNetQ
                                       .LifestyleTransient());
 
             var autoSubscriber = container.Resolve <AutoSubscriber>();
+            autoSubscriber.GenerateSubscriptionId = GenerateSubscriptionId;
             autoSubscriber.Subscribe(assembly);
             autoSubscriber.SubscribeAsync(assembly);
 
             container.Release(m_Logger);
+        }
+
+        private string GenerateSubscriptionId(AutoSubscriberConsumerInfo arg)
+        {
+            string id = "AutoSubscriber_" + arg.ConcreteType.FullName;
+
+            return id;
         }
 
         private bool IsMessageConsumerLogged(Type type)
