@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageIconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/tschroedter/Selkie.EasyNetQ</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/tschroedter/Selkie.EasyNetQ/tree/netcore2</RepositoryUrl>
+    <PackageLicenseUrl>https://github.com/tschroedter/Selkie.EasyNetQ/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageTags>Selkie, EasyNetQ, Core2</PackageTags>
+    <Copyright>Copyright © Thomas Schroedter 2017</Copyright>
+    <Description>.Net Core 2: Some small extensions and installers for EasyNetQ. The package contains a extension to subscribe to messages async and a logger.</Description>
   </PropertyGroup>
 
   <ItemGroup>
