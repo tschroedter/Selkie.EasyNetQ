@@ -8,7 +8,7 @@ using NUnit.Framework;
 using Core2.Selkie.EasyNetQ.Extensions;
 using Core2.Selkie.Windsor.Interfaces;
 
-namespace Selkie.EasyNetQ.Tests.Extensions
+namespace Core2.Selkie.EasyNetQ.Tests.Extensions
 {
     [ExcludeFromCodeCoverage]
     [TestFixture]

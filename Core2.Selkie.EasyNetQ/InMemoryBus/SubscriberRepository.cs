@@ -73,6 +73,7 @@ namespace Core2.Selkie.EasyNetQ.InMemoryBus
             return subscribers;
         }
 
+        [UsedImplicitly]
         internal IEnumerable <string> GetSubscriptionIdsForMessage <TMessage>()
         {
             if ( !m_Subscribers.ContainsKey(typeof( TMessage )) )

@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Core2.Selkie.EasyNetQ;
-using Selkie.EasyNetQ.Examples.Messages;
+using Core2.Selkie.EasyNetQ.Examples.Messages;
 
-namespace Selkie.EasyNetQ.Examples
+namespace Core2.Selkie.EasyNetQ.Example
 {
     public class InMemoryBusExampleASync
     {

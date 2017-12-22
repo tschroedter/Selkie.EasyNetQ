@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Linq;
-using Core2.Selkie.EasyNetQ;
-using Selkie.EasyNetQ.Examples.Messages;
+using Core2.Selkie.EasyNetQ.Examples.Messages;
 
-namespace Selkie.EasyNetQ.Examples
+namespace Core2.Selkie.EasyNetQ.Example
 {
     public class InMemoryBusExampleSync
     {
@@ -55,7 +54,7 @@ namespace Selkie.EasyNetQ.Examples
         {
             string fullName = message.GetType().FullName;
 
-            string text = $"*** Sync [Two] Handling {0}...";
+            string text = $"*** Sync [Two] Handling {fullName}...";
 
             Console.WriteLine(text);
         }

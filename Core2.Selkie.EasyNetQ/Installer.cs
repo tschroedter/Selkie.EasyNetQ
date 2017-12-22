@@ -6,10 +6,12 @@ using Castle.Windsor;
 using Core2.EasyNetQ.Management.Client;
 using Core2.Selkie.EasyNetQ.Installers;
 using Core2.Selkie.Windsor;
+using JetBrains.Annotations;
 
 namespace Core2.Selkie.EasyNetQ
 {
     [ExcludeFromCodeCoverage]
+    [UsedImplicitly]
     public class Installer : BaseInstaller <Installer>
     {
         public override bool IsAutoDetectAllowedForAssemblyName(string assemblyName)

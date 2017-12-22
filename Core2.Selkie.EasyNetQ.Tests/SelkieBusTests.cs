@@ -8,7 +8,7 @@ using Core2.Selkie.NUnit.Extensions;
 using Core2.Selkie.Windsor.Interfaces;
 using Core2.Selkie.EasyNetQ;
 
-namespace Selkie.EasyNetQ.Tests
+namespace Core2.Selkie.EasyNetQ.Tests
 {
     [TestFixture]
     internal sealed class SelkieBusTests

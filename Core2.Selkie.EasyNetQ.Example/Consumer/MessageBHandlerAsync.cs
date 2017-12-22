@@ -1,10 +1,10 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 using JetBrains.Annotations;
-using Selkie.EasyNetQ.Examples.Messages;
+using Core2.Selkie.EasyNetQ.Examples.Messages;
 using Core2.Selkie.EasyNetQ;
 
-namespace Selkie.EasyNetQ.Examples.Consumer
+namespace Core2.Selkie.EasyNetQ.Examples.Consumer
 {
     [UsedImplicitly]
     [ExcludeFromCodeCoverage]

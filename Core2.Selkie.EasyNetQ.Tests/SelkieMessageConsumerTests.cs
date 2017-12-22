@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Core2.Selkie.EasyNetQ;
 
-namespace Selkie.EasyNetQ.Tests
+namespace Core2.Selkie.EasyNetQ.Tests
 {
     [ExcludeFromCodeCoverage]
     [TestFixture]

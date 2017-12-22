@@ -17,7 +17,7 @@ namespace Core2.Selkie.EasyNetQ.Extensions
         {
             if ( maxDegreeOfParallelism < 1 )
             {
-                throw new ArgumentOutOfRangeException("maxDegreeOfParallelism");
+                throw new ArgumentOutOfRangeException(nameof(maxDegreeOfParallelism));
             }
             m_MaxDegreeOfParallelism = maxDegreeOfParallelism;
         }

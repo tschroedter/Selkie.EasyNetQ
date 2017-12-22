@@ -3,7 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using Castle.MicroKernel.Registration;
 using Core2.Selkie.Windsor;
 
-namespace Selkie.EasyNetQ.Examples
+namespace Core2.Selkie.EasyNetQ.Example
 {
     [ExcludeFromCodeCoverage]
     public class Installer

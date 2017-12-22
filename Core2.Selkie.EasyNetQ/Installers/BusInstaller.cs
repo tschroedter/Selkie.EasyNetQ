@@ -11,7 +11,7 @@ namespace Core2.Selkie.EasyNetQ.Installers
     public class BusInstaller
     {
         public void Install([NotNull] IWindsorContainer container,
-                            [NotNull] IConfigurationStore store)
+                            [NotNull, UsedImplicitly] IConfigurationStore store)
         {
             container.Register(
                                Component.For <IBus>()

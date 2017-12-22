@@ -1,9 +1,9 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
-using Selkie.EasyNetQ.Examples.Messages;
+using Core2.Selkie.EasyNetQ.Examples.Messages;
 using Core2.Selkie.EasyNetQ;
 
-namespace Selkie.EasyNetQ.Examples.Consumer
+namespace Core2.Selkie.EasyNetQ.Examples.Consumer
 {
     [ExcludeFromCodeCoverage]
     public class MessageBConsumerAsync : SelkieMessageConsumerAsync <MessageB>

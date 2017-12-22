@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27205.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core2", "Core2", "{EBB36EC2-1CF5-4D3F-8783-99709F3C44A8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EBB36EC2-1CF5-4D3F-8783-99709F3C44A8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core2.Selkie.EasyNetQ", "Core2.Selkie.EasyNetQ\Core2.Selkie.EasyNetQ.csproj", "{86B61279-2456-4E16-9BA6-FA4623E1C864}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core2.Selkie.EasyNetQ.Tests", "Core2.Selkie.EasyNetQ.Tests\Core2.Selkie.EasyNetQ.Tests.csproj", "{22D40179-3EEB-410C-BAC4-EB2484B8CC27}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core2.Selkie.EasyNetQ.Example", "Core2.Selkie.EasyNetQ.Example\Core2.Selkie.EasyNetQ.Example.csproj", "{83F66C98-3972-4E02-A9DA-E046B5EA479D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Example", "Example", "{786CAD26-BA8D-4266-A009-C738B9B45312}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,9 +36,8 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{86B61279-2456-4E16-9BA6-FA4623E1C864} = {EBB36EC2-1CF5-4D3F-8783-99709F3C44A8}
 		{22D40179-3EEB-410C-BAC4-EB2484B8CC27} = {EBB36EC2-1CF5-4D3F-8783-99709F3C44A8}
-		{83F66C98-3972-4E02-A9DA-E046B5EA479D} = {EBB36EC2-1CF5-4D3F-8783-99709F3C44A8}
+		{83F66C98-3972-4E02-A9DA-E046B5EA479D} = {786CAD26-BA8D-4266-A009-C738B9B45312}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0EFD0E3D-5582-483C-BF1A-627EF7912E1E}

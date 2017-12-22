@@ -5,7 +5,7 @@ using NUnit.Framework;
 using Core2.Selkie.EasyNetQ.InMemoryBus;
 using Core2.Selkie.NUnit.Extensions;
 
-namespace Selkie.EasyNetQ.Tests.InMemoryBus
+namespace Core2.Selkie.EasyNetQ.Tests.InMemoryBus
 {
     [ExcludeFromCodeCoverage]
     [TestFixture]

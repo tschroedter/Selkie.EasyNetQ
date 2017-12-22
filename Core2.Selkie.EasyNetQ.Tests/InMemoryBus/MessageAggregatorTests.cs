@@ -6,7 +6,7 @@ using Core2.Selkie.EasyNetQ.InMemoryBus;
 using Core2.Selkie.NUnit.Extensions;
 using Core2.Selkie.Windsor.Interfaces;
 
-namespace Selkie.EasyNetQ.Tests.InMemoryBus
+namespace Core2.Selkie.EasyNetQ.Tests.InMemoryBus
 {
     [ExcludeFromCodeCoverage]
     [TestFixture]

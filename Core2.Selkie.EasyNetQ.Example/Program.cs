@@ -2,12 +2,11 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Castle.Windsor;
-using Core2.Selkie.EasyNetQ;
-using JetBrains.Annotations;
-using Selkie.EasyNetQ.Examples.Messages;
+using Core2.Selkie.EasyNetQ.Examples.Messages;
 using Core2.Selkie.Windsor.Interfaces;
+using JetBrains.Annotations;
 
-namespace Selkie.EasyNetQ.Examples
+namespace Core2.Selkie.EasyNetQ.Example
 {
     [UsedImplicitly]
     [ExcludeFromCodeCoverage]

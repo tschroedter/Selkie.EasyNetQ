@@ -8,6 +8,7 @@ namespace Core2.Selkie.EasyNetQ.InMemoryBus
         [NotNull]
         ISubscriberRepository Create();
 
+        [UsedImplicitly]
         void Release([NotNull] ISubscriberRepository colony);
     }
 }
