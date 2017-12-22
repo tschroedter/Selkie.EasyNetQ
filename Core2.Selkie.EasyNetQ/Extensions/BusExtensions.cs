@@ -53,31 +53,29 @@ namespace Core2.Selkie.EasyNetQ.Extensions
         {
             object padlock = FindOrCreatePadlock(subscriptionId);
 
-            Func <T, Task> func = message => CreateTask(logger,
-                                                        handler,
-                                                        message,
-                                                        padlock);
+            Task Func(T message) => CreateTask(logger,
+                                               handler,
+                                               message,
+                                               padlock);
 
             bus.SubscribeAsync(subscriptionId,
-                               func);
+                               ( Func <T, Task> ) Func);
         }
 
         internal static object FindOrCreatePadlock(string subscriptionId)
         {
-            object m_padlock;
-
             if ( Padlocks.TryGetValue(subscriptionId,
-                                      out m_padlock) )
+                                      out object padlock) )
             {
-                return m_padlock;
+                return padlock;
             }
 
-            m_padlock = new object();
+            padlock = new object();
 
             Padlocks.Add(subscriptionId,
-                         m_padlock);
+                         padlock);
 
-            return m_padlock;
+            return padlock;
         }
     }
 }
