@@ -19,7 +19,8 @@ namespace Core2.Selkie.EasyNetQ.InMemoryBus
         private readonly object m_Padlock = new object();
         private readonly ISubscriberStore m_Store;
 
-        public void Publish <T>(T message) where T : class
+        public void Publish <T>(T message)
+            where T : class
         {
             lock ( m_Padlock )
             {
@@ -27,7 +28,8 @@ namespace Core2.Selkie.EasyNetQ.InMemoryBus
             }
         }
 
-        public void PublishAsync <T>(T message) where T : class
+        public void PublishAsync <T>(T message)
+            where T : class
         {
             lock ( m_Padlock )
             {
@@ -36,7 +38,8 @@ namespace Core2.Selkie.EasyNetQ.InMemoryBus
         }
 
         public void Subscribe <T>(string subscriptionId,
-                                  Action <T> handler) where T : class
+                                  Action <T> handler)
+            where T : class
         {
             lock ( m_Padlock )
             {
@@ -46,7 +49,8 @@ namespace Core2.Selkie.EasyNetQ.InMemoryBus
         }
 
         public void SubscribeAsync <T>(string subscriptionId,
-                                       Action <T> handler) where T : class
+                                       Action <T> handler)
+            where T : class
         {
             lock ( m_Padlock )
             {

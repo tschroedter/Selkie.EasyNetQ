@@ -20,7 +20,8 @@ namespace Core2.Selkie.EasyNetQ
         private readonly IWindsorContainer m_Container;
         private readonly ISelkieLogger m_Logger;
 
-        public void Dispatch <TMessage, TConsumer>([NotNull] TMessage message) where TMessage : class
+        public void Dispatch <TMessage, TConsumer>([NotNull] TMessage message)
+            where TMessage : class
             where TConsumer : IConsume <TMessage>
         {
             var consumer = m_Container.Resolve <TConsumer>();
@@ -41,7 +42,8 @@ namespace Core2.Selkie.EasyNetQ
             }
         }
 
-        public Task DispatchAsync <TMessage, TConsumer>([NotNull] TMessage message) where TMessage : class
+        public Task DispatchAsync <TMessage, TConsumer>([NotNull] TMessage message)
+            where TMessage : class
             where TConsumer : IConsumeAsync <TMessage>
         {
             var consumer = m_Container.Resolve <TConsumer>();

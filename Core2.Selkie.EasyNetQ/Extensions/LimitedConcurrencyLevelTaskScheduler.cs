@@ -31,8 +31,10 @@ namespace Core2.Selkie.EasyNetQ.Extensions
 
         // The maximum concurrency level allowed by this scheduler.  
         private readonly int m_MaxDegreeOfParallelism;
+
         // The list of tasks to be executed  
         private readonly LinkedList <Task> m_Tasks = new LinkedList <Task>(); // protected by lock(_tasks) 
+
         // Indicates whether the scheduler is currently processing work items.  
         private int m_DelegatesQueuedOrRunning;
 
@@ -83,7 +85,9 @@ namespace Core2.Selkie.EasyNetQ.Extensions
         protected sealed override bool TryDequeue(Task task)
         {
             lock ( m_Tasks )
+            {
                 return m_Tasks.Remove(task);
+            }
         }
 
         // Attempts to execute the specified task on the current thread.  
@@ -138,7 +142,7 @@ namespace Core2.Selkie.EasyNetQ.Extensions
                                                            TryExecuteTask(item);
                                                        }
                                                    }
-                                                       // We're done processing items on the current thread 
+                                                   // We're done processing items on the current thread 
                                                    finally
                                                    {
                                                        s_CurrentThreadIsProcessingItems = false;

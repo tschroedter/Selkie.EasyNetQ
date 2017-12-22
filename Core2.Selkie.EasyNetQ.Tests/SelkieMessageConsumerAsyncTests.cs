@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using NUnit.Framework;
-using Core2.Selkie.EasyNetQ;
 
 namespace Core2.Selkie.EasyNetQ.Tests
 {

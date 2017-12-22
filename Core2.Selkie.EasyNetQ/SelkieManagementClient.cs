@@ -7,9 +7,6 @@ using Core2.EasyNetQ.Management.Client.Model;
 using Core2.Selkie.Windsor;
 using Core2.Selkie.Windsor.Interfaces;
 using JetBrains.Annotations;
-using Binding  = Core2.EasyNetQ.Management.Client.Model.Binding;
-using Exchange = Core2.EasyNetQ.Management.Client.Model.Exchange;
-using Queue = Core2.EasyNetQ.Management.Client.Model.Queue;
 
 namespace Core2.Selkie.EasyNetQ
 {

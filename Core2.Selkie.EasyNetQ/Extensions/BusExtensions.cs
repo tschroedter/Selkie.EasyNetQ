@@ -6,7 +6,7 @@ using Core2.Selkie.Windsor.Interfaces;
 using EasyNetQ;
 using JetBrains.Annotations;
 
-[assembly: InternalsVisibleTo("Core2.Selkie.EasyNetQ.Tests")]
+[assembly : InternalsVisibleTo("Core2.Selkie.EasyNetQ.Tests")]
 
 namespace Core2.Selkie.EasyNetQ.Extensions
 {
@@ -53,10 +53,13 @@ namespace Core2.Selkie.EasyNetQ.Extensions
         {
             object padlock = FindOrCreatePadlock(subscriptionId);
 
-            Task Func(T message) => CreateTask(logger,
-                                               handler,
-                                               message,
-                                               padlock);
+            Task Func(T message)
+            {
+                return CreateTask(logger,
+                                  handler,
+                                  message,
+                                  padlock);
+            }
 
             bus.SubscribeAsync(subscriptionId,
                                ( Func <T, Task> ) Func);

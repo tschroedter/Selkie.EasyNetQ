@@ -8,7 +8,9 @@ namespace Core2.Selkie.EasyNetQ.Installers
     [UsedImplicitly]
     public class ManagementClientLoaderBuilder
     {
-        private const string HttpLocalhost = "http://localhost";    // Todo this is private the other 2 not? maybe new class
+        private const string HttpLocalhost =
+            "http://localhost"; // Todo this is private the other 2 not? maybe new class
+
         internal const string Username = "selkieAdmin";
         internal const string Password = "selkieAdmin";
 

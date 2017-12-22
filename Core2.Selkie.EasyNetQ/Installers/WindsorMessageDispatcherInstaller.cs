@@ -11,14 +11,15 @@ namespace Core2.Selkie.EasyNetQ.Installers
     public class WindsorMessageDispatcherInstaller
     {
         public void Install([NotNull] IWindsorContainer container,
-                            [NotNull, UsedImplicitly] IConfigurationStore store)
+                            [NotNull] [UsedImplicitly] IConfigurationStore store)
         {
             container.Register(
                                Component.For <AutoSubscriber>()
                                         .UsingFactoryMethod(
                                                             () =>
-                                                            WindsorMessageDispatcherBuilder.CreateMessageDispatcher(
-                                                                                                                    container))
+                                                                WindsorMessageDispatcherBuilder
+                                                                    .CreateMessageDispatcher(
+                                                                                             container))
                                         .LifestyleSingleton());
         }
     }

@@ -21,7 +21,7 @@ namespace Core2.Selkie.EasyNetQ.Installers
                                      AutoSubscriberMessageDispatcher = new WindsorMessageDispatcher(container),
                                      GenerateSubscriptionId =
                                          subscriptionInfo =>
-                                         "Selkie_AutoSubscriber_" + subscriptionInfo.ConcreteType.Name
+                                             "Selkie_AutoSubscriber_" + subscriptionInfo.ConcreteType.Name
                                  };
 
             return autoSubscriber;
