@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using Core2.Selkie.EasyNetQ.Example.Messages;
 using JetBrains.Annotations;
-using Core2.Selkie.EasyNetQ.Examples.Messages;
-using Core2.Selkie.EasyNetQ;
 
-namespace Core2.Selkie.EasyNetQ.Examples.Consumer
+namespace Core2.Selkie.EasyNetQ.Example.Consumer
 {
     [UsedImplicitly]
     [ExcludeFromCodeCoverage]
@@ -13,7 +12,7 @@ namespace Core2.Selkie.EasyNetQ.Examples.Consumer
         [UsedImplicitly]
         public override void Handle(MessageA message)
         {
-            string handler = this.GetType().Name;
+            string handler = GetType().Name;
             string messageFullName = message.GetType().FullName;
 
             Console.WriteLine($"{handler} ==> Consumed message {messageFullName}...");

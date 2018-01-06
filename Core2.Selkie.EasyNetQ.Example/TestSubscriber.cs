@@ -1,4 +1,4 @@
-using Core2.Selkie.EasyNetQ.Examples.Messages;
+using Core2.Selkie.EasyNetQ.Example.Messages;
 using Core2.Selkie.Windsor.Interfaces;
 using JetBrains.Annotations;
 

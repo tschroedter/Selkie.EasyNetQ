@@ -1,4 +1,4 @@
-﻿namespace Core2.Selkie.EasyNetQ.Examples.Messages
+﻿namespace Core2.Selkie.EasyNetQ.Example.Messages
 {
     public class MessageA
     {

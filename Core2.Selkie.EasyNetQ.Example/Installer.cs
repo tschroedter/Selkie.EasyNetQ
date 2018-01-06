@@ -12,9 +12,7 @@ namespace Core2.Selkie.EasyNetQ.Example
     {
         public override bool IsAutoDetectAllowedForAssemblyName(string assemblyName)
         {
-            return assemblyName.StartsWith("Selkie.EasyNetQ",
-                                           StringComparison.Ordinal) ||
-                   assemblyName.StartsWith("Core2.Selkie.EasyNetQ",
+            return assemblyName.StartsWith("Core2.Selkie.EasyNetQ",
                                            StringComparison.Ordinal);
         }
     }

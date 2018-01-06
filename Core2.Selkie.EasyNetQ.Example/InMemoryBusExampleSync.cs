@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Core2.Selkie.EasyNetQ.Examples.Messages;
+using Core2.Selkie.EasyNetQ.Example.Messages;
 
 namespace Core2.Selkie.EasyNetQ.Example
 {

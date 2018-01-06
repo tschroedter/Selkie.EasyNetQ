@@ -25,7 +25,7 @@ namespace Core2.Selkie.EasyNetQ
             container.Install()
                      .Register(
                                Classes.FromAssembly(assembly)
-                                      .Where(IsMessageConsumerLogged)
+                                      .Where(IsMessageHandlerLogged)
                                       .WithServiceSelf()
                                       .LifestyleTransient());
 
@@ -44,20 +44,20 @@ namespace Core2.Selkie.EasyNetQ
             return id;
         }
 
-        private bool IsMessageConsumerLogged(Type type)
+        private bool IsMessageHandlerLogged(Type type)
         {
-            bool isCosumer = IsMessageHandler(type);
+            bool isHandler = IsMessageHandler(type);
 
-            if ( isCosumer )
+            if ( isHandler )
             {
-                m_Logger.Info($"Message Consumer: Registered {type.FullName}.");
+                m_Logger.Info($"Message Handler: Registered {type.FullName}.");
             }
             else
             {
-                m_Logger.Debug($"Message Consumer: Ignored {type.FullName}.");
+                m_Logger.Debug($"Message Handler: Ignored {type.FullName}.");
             }
 
-            return isCosumer;
+            return isHandler;
         }
 
         private bool IsMessageHandler(Type type)
