@@ -59,7 +59,6 @@ namespace Core2.Selkie.EasyNetQ.InMemoryBus
             }
         }
 
-        // Todo testing
         public void Unsubscribe <T>(string subscriptionId)
             where T : class
         {
@@ -69,7 +68,6 @@ namespace Core2.Selkie.EasyNetQ.InMemoryBus
             }
         }
 
-        // Todo testing
         public void UnsubscribeAsync <T>(string subscriptionId)
             where T : class
         {

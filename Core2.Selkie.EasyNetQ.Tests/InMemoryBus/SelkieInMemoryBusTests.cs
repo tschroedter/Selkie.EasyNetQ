@@ -102,5 +102,39 @@ namespace Core2.Selkie.EasyNetQ.Tests.InMemoryBus
             store.Received().SubscribeAsync <TestMessage>("SubscriptionId",
                                                           handler.Handle);
         }
+
+        [Test]
+        [AutoNSubstituteData]
+        public void Unsubscribe_CallsSubscribe_WhenCalled([NotNull] ISubscriberStore store,
+                                                          [NotNull] IMessageAggregator aggregator,
+                                                          [NotNull] TestHandler handler)
+        {
+            // Arrange
+            SelkieInMemoryBus sut = CreateSut(store,
+                                              aggregator);
+
+            // Act
+            sut.Unsubscribe <TestMessage>("SubscriptionId");
+
+            // Assert
+            store.Received().Unsubscribe <TestMessage>("SubscriptionId");
+        }
+
+        [Test]
+        [AutoNSubstituteData]
+        public void UnsubscribeASync_CallsSubscribe_WhenCalled([NotNull] ISubscriberStore store,
+                                                               [NotNull] IMessageAggregator aggregator,
+                                                               [NotNull] TestHandler handler)
+        {
+            // Arrange
+            SelkieInMemoryBus sut = CreateSut(store,
+                                              aggregator);
+
+            // Act
+            sut.UnsubscribeAsync <TestMessage>("SubscriptionId");
+
+            // Assert
+            store.Received().UnsubscribeAsync <TestMessage>("SubscriptionId");
+        }
     }
 }

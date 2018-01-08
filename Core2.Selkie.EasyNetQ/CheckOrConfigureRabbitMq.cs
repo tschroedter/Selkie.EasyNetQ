@@ -30,8 +30,8 @@ namespace Core2.Selkie.EasyNetQ
         {
             Vhost vhost = CheckOrCreateVirtualHost(BusBuilder.VirtualHost);
 
-            CheckOrAddRabbitMqUser(ManagementClientLoaderBuilder.Username,
-                                   ManagementClientLoaderBuilder.Password,
+            CheckOrAddRabbitMqUser(ManagementClientConfigurationProvider.Username,
+                                   ManagementClientConfigurationProvider.Password,
                                    "administrator",
                                    vhost);
 
