@@ -11,6 +11,7 @@
     <PackageTags>Selkie, EasyNetQ, Core2</PackageTags>
     <Copyright>Copyright © Thomas Schroedter 2017</Copyright>
     <Description>.Net Core 2: Some small extensions and installers for EasyNetQ. The package contains a extension to subscribe to messages async and a logger.</Description>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
