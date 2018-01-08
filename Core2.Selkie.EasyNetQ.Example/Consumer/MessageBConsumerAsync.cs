@@ -9,7 +9,7 @@ namespace Core2.Selkie.EasyNetQ.Example.Consumer
 {
     [ExcludeFromCodeCoverage]
     [UsedImplicitly]
-    public class MessageBConsumerAsync : IConsumeAsync<MessageB>
+    public class MessageBConsumerAsync : IConsumeAsync <MessageB>
     {
         public Task Consume(MessageB message)
         {

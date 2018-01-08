@@ -64,7 +64,7 @@ namespace Core2.Selkie.EasyNetQ.Example
             container.Release(exampleASync);
 
             container.Release(inMemoryBus);
-            
+
             Console.ReadLine();
 
             Environment.Exit(0);

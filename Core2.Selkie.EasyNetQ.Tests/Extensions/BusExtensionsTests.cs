@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading.Tasks;
+using Core2.Selkie.EasyNetQ.Extensions;
+using Core2.Selkie.Windsor.Interfaces;
 using EasyNetQ;
 using JetBrains.Annotations;
 using NSubstitute;
 using NUnit.Framework;
-using Core2.Selkie.EasyNetQ.Extensions;
-using Core2.Selkie.Windsor.Interfaces;
 
 namespace Core2.Selkie.EasyNetQ.Tests.Extensions
 {

@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using JetBrains.Annotations;
-using NSubstitute;
-using NUnit.Framework;
 using Core2.Selkie.EasyNetQ.InMemoryBus;
 using Core2.Selkie.NUnit.Extensions;
 using Core2.Selkie.Windsor.Interfaces;
+using JetBrains.Annotations;
+using NSubstitute;
+using NUnit.Framework;
 
 namespace Core2.Selkie.EasyNetQ.Tests.InMemoryBus
 {

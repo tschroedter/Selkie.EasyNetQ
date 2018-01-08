@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using NUnit.Framework;
 using Core2.Selkie.EasyNetQ.InMemoryBus;
+using NUnit.Framework;
 
 namespace Core2.Selkie.EasyNetQ.Tests.InMemoryBus
 {

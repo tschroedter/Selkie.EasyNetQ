@@ -44,6 +44,13 @@ namespace Core2.Selkie.EasyNetQ
             return id;
         }
 
+        private bool IsMessageHandler(Type type)
+        {
+            string name = type.Name;
+
+            return name.EndsWith("HandlerAsync") || name.EndsWith("Handler");
+        }
+
         private bool IsMessageHandlerLogged(Type type)
         {
             bool isHandler = IsMessageHandler(type);
@@ -59,13 +66,5 @@ namespace Core2.Selkie.EasyNetQ
 
             return isHandler;
         }
-
-        private bool IsMessageHandler(Type type)
-        {
-            string name = type.Name;
-
-            return name.EndsWith("HandlerAsync") || name.EndsWith("Handler");
-        }
     }
 }
-

@@ -20,7 +20,7 @@ namespace Core2.Selkie.EasyNetQ
         public void Register(IWindsorContainer container,
                              Assembly assembly)
         {
-            m_Logger = container.Resolve<ISelkieLogger>();
+            m_Logger = container.Resolve <ISelkieLogger>();
 
             container.Install()
                      .Register(
@@ -29,7 +29,7 @@ namespace Core2.Selkie.EasyNetQ
                                       .WithServiceSelf()
                                       .LifestyleTransient());
 
-            var autoSubscriber = container.Resolve<AutoSubscriber>();
+            var autoSubscriber = container.Resolve <AutoSubscriber>();
             autoSubscriber.GenerateSubscriptionId = GenerateSubscriptionId;
             autoSubscriber.Subscribe(assembly);
             autoSubscriber.SubscribeAsync(assembly);
@@ -44,11 +44,18 @@ namespace Core2.Selkie.EasyNetQ
             return id;
         }
 
+        private bool IsMessageConsumer(Type type)
+        {
+            string name = type.Name;
+
+            return name.EndsWith("ConsumerAsync") || name.EndsWith("Consumer");
+        }
+
         private bool IsMessageConsumerLogged(Type type)
         {
             bool isHandler = IsMessageConsumer(type);
 
-            if (isHandler)
+            if ( isHandler )
             {
                 m_Logger.Info($"Message Consumer: Registered {type.FullName}.");
             }
@@ -58,13 +65,6 @@ namespace Core2.Selkie.EasyNetQ
             }
 
             return isHandler;
-        }
-
-        private bool IsMessageConsumer(Type type)
-        {
-            string name = type.Name;
-
-            return name.EndsWith("ConsumerAsync") || name.EndsWith("Consumer");
         }
     }
 }

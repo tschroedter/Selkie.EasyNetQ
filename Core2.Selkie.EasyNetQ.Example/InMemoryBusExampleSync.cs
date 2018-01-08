@@ -17,17 +17,6 @@ namespace Core2.Selkie.EasyNetQ.Example
                                                AHandlerTwo);
         }
 
-        ~InMemoryBusExampleSync()
-        {
-            Unsubscribe();
-        }
-
-        public void Unsubscribe()
-        {
-            m_InMemoryBus.Unsubscribe <MessageA>("one");
-            m_InMemoryBus.UnsubscribeAsync <MessageA>("one");
-        }
-
         private readonly ISelkieInMemoryBus m_InMemoryBus;
         private readonly int[] m_TestSync = new int[100];
         private int m_IndexSync;
@@ -47,6 +36,12 @@ namespace Core2.Selkie.EasyNetQ.Example
             }
 
             WriteLine("Sync...all good!");
+        }
+
+        public void Unsubscribe()
+        {
+            m_InMemoryBus.Unsubscribe <MessageA>("one");
+            m_InMemoryBus.UnsubscribeAsync <MessageA>("one");
         }
 
         private void AHandlerOne(MessageA message)
@@ -70,6 +65,11 @@ namespace Core2.Selkie.EasyNetQ.Example
             string text = $"*** Sync [Two] Handling {fullName}...";
 
             WriteLine(text);
+        }
+
+        ~InMemoryBusExampleSync()
+        {
+            Unsubscribe();
         }
     }
 }

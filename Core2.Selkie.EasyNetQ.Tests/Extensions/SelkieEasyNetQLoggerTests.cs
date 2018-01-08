@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using Core2.Selkie.Windsor.Interfaces;
 using NSubstitute;
 using NUnit.Framework;
-using Core2.Selkie.Windsor.Interfaces;
 
 namespace Core2.Selkie.EasyNetQ.Tests.Extensions
 {

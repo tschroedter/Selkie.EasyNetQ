@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
+using Core2.Selkie.EasyNetQ.InMemoryBus;
+using Core2.Selkie.NUnit.Extensions;
 using JetBrains.Annotations;
 using NSubstitute;
 using NUnit.Framework;
-using Core2.Selkie.EasyNetQ.InMemoryBus;
-using Core2.Selkie.NUnit.Extensions;
 
 namespace Core2.Selkie.EasyNetQ.Tests.InMemoryBus
 {
