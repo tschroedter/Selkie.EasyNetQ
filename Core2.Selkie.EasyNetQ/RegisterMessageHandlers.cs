@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using Core2.Selkie.EasyNetQ.Interfaces;
 using Core2.Selkie.Windsor;
 using Core2.Selkie.Windsor.Interfaces;
 using EasyNetQ.AutoSubscribe;

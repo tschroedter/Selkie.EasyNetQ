@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Core2.Selkie.EasyNetQ.Interfaces.InMemoryBus;
 using Core2.Selkie.Windsor;
 using JetBrains.Annotations;
 

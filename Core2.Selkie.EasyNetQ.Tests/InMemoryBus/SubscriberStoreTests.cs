@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Core2.Selkie.EasyNetQ.InMemoryBus;
+using Core2.Selkie.EasyNetQ.Interfaces.InMemoryBus;
 using Core2.Selkie.NUnit.Extensions;
 using JetBrains.Annotations;
 using NSubstitute;

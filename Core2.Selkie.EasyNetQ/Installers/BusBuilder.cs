@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Castle.Windsor;
+using Core2.Selkie.EasyNetQ.Interfaces;
 using EasyNetQ;
 using JetBrains.Annotations;
 

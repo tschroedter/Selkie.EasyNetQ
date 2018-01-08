@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace Core2.Selkie.EasyNetQ.InMemoryBus
+namespace Core2.Selkie.EasyNetQ.Interfaces.InMemoryBus
 {
     public interface IMessageAggregator
     {

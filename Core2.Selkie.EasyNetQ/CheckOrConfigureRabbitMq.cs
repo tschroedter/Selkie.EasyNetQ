@@ -5,6 +5,7 @@ using Castle.Core.Internal;
 using Core2.EasyNetQ.Management.Client;
 using Core2.EasyNetQ.Management.Client.Model;
 using Core2.Selkie.EasyNetQ.Installers;
+using Core2.Selkie.EasyNetQ.Interfaces;
 using Core2.Selkie.Windsor;
 using Core2.Selkie.Windsor.Interfaces;
 using JetBrains.Annotations;

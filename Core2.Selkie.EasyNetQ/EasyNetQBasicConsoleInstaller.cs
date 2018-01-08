@@ -1,6 +1,7 @@
 ﻿using System.Reflection;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using Core2.Selkie.EasyNetQ.Interfaces;
 using JetBrains.Annotations;
 
 namespace Core2.Selkie.EasyNetQ

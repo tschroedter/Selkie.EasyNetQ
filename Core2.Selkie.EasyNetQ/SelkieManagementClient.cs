@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using Core2.EasyNetQ.Management.Client;
 using Core2.EasyNetQ.Management.Client.Model;
+using Core2.Selkie.EasyNetQ.Interfaces;
 using Core2.Selkie.Windsor;
 using Core2.Selkie.Windsor.Interfaces;
 using JetBrains.Annotations;

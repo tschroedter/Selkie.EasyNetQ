@@ -1,4 +1,5 @@
 ﻿using System;
+using Core2.Selkie.EasyNetQ.Interfaces;
 using Core2.Selkie.Windsor;
 using Core2.Selkie.Windsor.Interfaces;
 using JetBrains.Annotations;

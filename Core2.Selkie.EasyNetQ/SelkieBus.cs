@@ -1,5 +1,6 @@
 ﻿using System;
 using Core2.Selkie.EasyNetQ.Extensions;
+using Core2.Selkie.EasyNetQ.Interfaces;
 using Core2.Selkie.Windsor;
 using Core2.Selkie.Windsor.Interfaces;
 using EasyNetQ;

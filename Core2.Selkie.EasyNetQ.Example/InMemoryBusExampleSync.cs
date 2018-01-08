@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using Core2.Selkie.EasyNetQ.Example.Messages;
+using Core2.Selkie.EasyNetQ.Interfaces;
 using static System.Console;
 
 namespace Core2.Selkie.EasyNetQ.Example

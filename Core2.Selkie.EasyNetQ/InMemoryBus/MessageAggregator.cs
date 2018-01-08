@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Core2.Selkie.EasyNetQ.Extensions;
+using Core2.Selkie.EasyNetQ.Interfaces.InMemoryBus;
 using Core2.Selkie.Windsor;
 using Core2.Selkie.Windsor.Interfaces;
 using JetBrains.Annotations;

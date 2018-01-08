@@ -1,4 +1,6 @@
 using System;
+using Core2.Selkie.EasyNetQ.Interfaces;
+using Core2.Selkie.EasyNetQ.Interfaces.InMemoryBus;
 using Core2.Selkie.Windsor;
 using JetBrains.Annotations;
 
