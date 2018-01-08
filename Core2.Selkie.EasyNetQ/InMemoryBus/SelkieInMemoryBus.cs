@@ -58,5 +58,25 @@ namespace Core2.Selkie.EasyNetQ.InMemoryBus
                                        handler);
             }
         }
+
+        // Todo testing
+        public void Unsubscribe<T>(string subscriptionId)
+            where T : class
+        {
+            lock (m_Padlock)
+            {
+                m_Store.Unsubscribe<T>(subscriptionId);
+            }
+        }
+
+        // Todo testing
+        public void UnsubscribeAsync<T>(string subscriptionId)
+            where T : class
+        {
+            lock (m_Padlock)
+            {
+                m_Store.UnsubscribeAsync<T>(subscriptionId);
+            }
+        }
     }
 }

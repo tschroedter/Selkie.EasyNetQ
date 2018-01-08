@@ -13,23 +13,23 @@ namespace Core2.Selkie.EasyNetQ
     [ExcludeFromCodeCoverage]
     [ProjectComponent(Lifestyle.Transient)]
     [UsedImplicitly]
-    public class RegisterMessageHandlers : IRegisterMessageHandlers
+    public class RegisterMessageConsumers : IRegisterMessageConsumers
     {
         private ISelkieLogger m_Logger;
 
         public void Register(IWindsorContainer container,
                              Assembly assembly)
         {
-            m_Logger = container.Resolve <ISelkieLogger>();
+            m_Logger = container.Resolve<ISelkieLogger>();
 
             container.Install()
                      .Register(
                                Classes.FromAssembly(assembly)
-                                      .Where(IsMessageHandlerLogged)
+                                      .Where(IsMessageConsumerLogged)
                                       .WithServiceSelf()
                                       .LifestyleTransient());
 
-            var autoSubscriber = container.Resolve <AutoSubscriber>();
+            var autoSubscriber = container.Resolve<AutoSubscriber>();
             autoSubscriber.GenerateSubscriptionId = GenerateSubscriptionId;
             autoSubscriber.Subscribe(assembly);
             autoSubscriber.SubscribeAsync(assembly);
@@ -44,28 +44,27 @@ namespace Core2.Selkie.EasyNetQ
             return id;
         }
 
-        private bool IsMessageHandlerLogged(Type type)
+        private bool IsMessageConsumerLogged(Type type)
         {
-            bool isHandler = IsMessageHandler(type);
+            bool isHandler = IsMessageConsumer(type);
 
-            if ( isHandler )
+            if (isHandler)
             {
-                m_Logger.Info($"Message Handler: Registered {type.FullName}.");
+                m_Logger.Info($"Message Consumer: Registered {type.FullName}.");
             }
             else
             {
-                m_Logger.Debug($"Message Handler: Ignored {type.FullName}.");
+                m_Logger.Debug($"Message Consumer: Ignored {type.FullName}.");
             }
 
             return isHandler;
         }
 
-        private bool IsMessageHandler(Type type)
+        private bool IsMessageConsumer(Type type)
         {
             string name = type.Name;
 
-            return name.EndsWith("HandlerAsync") || name.EndsWith("Handler");
+            return name.EndsWith("ConsumerAsync") || name.EndsWith("Consumer");
         }
     }
 }
-

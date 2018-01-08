@@ -20,7 +20,21 @@ namespace Core2.Selkie.EasyNetQ.Example
 
             Assembly assembly = typeof( Installer ).Assembly;
 
-            var consumers = container.Resolve <IRegisterMessageHandlers>();
+            var handlers = container.Resolve <IRegisterMessageHandlers>();
+            handlers.Register(container,
+                              assembly);
+            container.Release(handlers);
+
+            // Todo AutoSubscriber not working
+            /*
+            var ibus = container.Resolve<IBus>();
+            AutoSubscriber autoSubscriber = new AutoSubscriber(ibus, "AutoSubscriber");
+            autoSubscriber.Subscribe(assembly);
+            container.Release(ibus);
+            */
+
+            // work-around
+            var consumers = container.Resolve <IRegisterMessageConsumers>();
             consumers.Register(container,
                                assembly);
             container.Release(consumers);
@@ -29,7 +43,6 @@ namespace Core2.Selkie.EasyNetQ.Example
             client.CheckOrConfigureRabbitMq();
 
             var bus = container.Resolve <ISelkieBus>();
-
             var logger = container.Resolve <ISelkieLogger>();
             var subscriber = new TestSubscriber(logger,
                                                 bus);
@@ -42,11 +55,16 @@ namespace Core2.Selkie.EasyNetQ.Example
             var inMemoryBus = container.Resolve <ISelkieInMemoryBus>();
             var exampleSync = new InMemoryBusExampleSync(inMemoryBus);
             exampleSync.Run();
+            exampleSync.Unsubscribe();
+            container.Release(exampleSync);
 
             var exampleASync = new InMemoryBusExampleASync(inMemoryBus);
             exampleASync.Run();
-            container.Release(inMemoryBus);
+            exampleASync.Unsubscribe();
+            container.Release(exampleASync);
 
+            container.Release(inMemoryBus);
+            
             Console.ReadLine();
 
             Environment.Exit(0);

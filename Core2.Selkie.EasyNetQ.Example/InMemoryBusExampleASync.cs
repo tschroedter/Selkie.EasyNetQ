@@ -1,6 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Core2.Selkie.EasyNetQ.Example.Messages;
+using static System.Console;
 
 namespace Core2.Selkie.EasyNetQ.Example
 {
@@ -17,6 +17,17 @@ namespace Core2.Selkie.EasyNetQ.Example
                                                     AHandlerTwo);
         }
 
+        ~InMemoryBusExampleASync()
+        {
+            Unsubscribe();
+        }
+
+        public void Unsubscribe()
+        {
+            m_InMemoryBus.Unsubscribe <MessageA>("one");
+            m_InMemoryBus.UnsubscribeAsync <MessageA>("one");
+        }
+
         private readonly ISelkieInMemoryBus m_InMemoryBus;
         private readonly int[] m_TestSync = new int[100];
         private int m_IndexSync;
@@ -26,14 +37,16 @@ namespace Core2.Selkie.EasyNetQ.Example
             for ( var i = 0 ; i < m_TestSync.Length ; i++ )
             {
                 m_InMemoryBus.PublishAsync(new MessageA());
+
+                WriteLine($"Sending MessageA {i} time!");
             }
 
             while ( m_TestSync.Any(x => x == 0) )
             {
-                Console.WriteLine("Async Waiting...");
+                WriteLine("Async Waiting...");
             }
 
-            Console.WriteLine("Async...all good!");
+            WriteLine("Async...all good!");
         }
 
         private void AHandlerOne(MessageA message)
@@ -44,7 +57,7 @@ namespace Core2.Selkie.EasyNetQ.Example
 
             string text = $"*** Async [One] Handling {fullName}...";
 
-            Console.WriteLine(text);
+            WriteLine(text);
 
             m_TestSync [ index ] = 1;
 
@@ -57,7 +70,7 @@ namespace Core2.Selkie.EasyNetQ.Example
 
             string text = $"*** Async[Two] Handling {fullName}...";
 
-            Console.WriteLine(text);
+            WriteLine(text);
         }
     }
 }
