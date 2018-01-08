@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Core2.Selkie.Windsor" Version="1.0.2" />
+    <PackageReference Include="Core2.Selkie.Windsor" Version="1.0.1" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0" />
   </ItemGroup>
 

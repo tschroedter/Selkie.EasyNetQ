@@ -14,8 +14,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Core2.EasyNetQ.Management.Client" Version="1.0.2" />
-    <PackageReference Include="Core2.Selkie.Windsor" Version="1.0.2" />
+    <PackageReference Include="Core2.EasyNetQ.Management.Client" Version="1.0.1" />
+    <PackageReference Include="Core2.Selkie.Windsor" Version="1.0.1" />
     <PackageReference Include="EasyNetQ" Version="2.2.0" />
   </ItemGroup>
 
